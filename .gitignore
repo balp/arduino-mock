@@ -1,0 +1,58 @@
+# Ignore editor backup/temps
+*~
+*.bak
+*.swp
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+# Cmake files
+CMakeCache.txt
+CMakeFiles
+Makefile
+cmake_install.cmake
+install_manifest.txt
+
+#ignore thumbnails created by windows
+Thumbs.db
+#Ignore files build by Visual Studio
+*.obj
+*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+*.pyc
+[Bb]in
+[Dd]ebug*/
+*.lib
+*.sbr
+*.swp
+obj/
+[Rr]elease*/
+_ReSharper*/
+[Tt]est[Rr]esult*
+build*/
+*~
