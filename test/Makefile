@@ -43,7 +43,7 @@ CXXFLAGS += -g -Wall -Wextra -pthread \
 
 # All tests produced by this Makefile.  Remember to add new tests you
 # created to the list.
-TESTS = DigitalReadSerial_unittest
+TESTS = arduino_unittest serial_unittest spark_unittest
 
 # All Google Test headers.  Usually you shouldn't change this
 # definition.
@@ -120,12 +120,29 @@ spark.o : $(ARDUINO_MOCK_DIR)/include/arduino-mock/spark.h \
 # gtest_main.a, depending on whether it defines its own main()
 # function.
 
-DigitalReadSerial_unittest.o : $(TEST_DIR)/DigitalReadSerial_unittest.cc \
-				$(TEST_DIR)/DigitalReadSerial.ino \
+serial_unittest.o : $(TEST_DIR)/serial_unittest.cc \
 				$(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/DigitalReadSerial_unittest.cc
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/serial_unittest.cc
 
-DigitalReadSerial_unittest : DigitalReadSerial_unittest.o \
+serial_unittest : serial_unittest.o \
+				gmock_main.a  \
+				arduino_mock_all.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
+spark_unittest.o : $(TEST_DIR)/spark_unittest.cc \
+				$(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/spark_unittest.cc
+
+spark_unittest : spark_unittest.o \
+				gmock_main.a  \
+				arduino_mock_all.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
+arduino_unittest.o : $(TEST_DIR)/arduino_unittest.cc \
+				$(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/arduino_unittest.cc
+
+arduino_unittest : arduino_unittest.o \
 				gmock_main.a  \
 				arduino_mock_all.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
