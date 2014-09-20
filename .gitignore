@@ -20,7 +20,6 @@
 # Cmake files
 CMakeCache.txt
 CMakeFiles
-Makefile
 cmake_install.cmake
 install_manifest.txt
 
@@ -56,3 +55,6 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 build*/
 *~
+
+#ignore binaries
+*_unittest

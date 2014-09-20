@@ -1,6 +1,6 @@
 // Copyright 2014 http://switchdevice.com
 
-#include "Serial.h"
+#include "arduino-mock/serial.h"
 
 static SerialMock* gSerialMock = NULL;
 SerialMock* serialMockInstance() {

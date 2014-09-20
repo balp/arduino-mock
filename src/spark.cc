@@ -1,6 +1,6 @@
 // Copyright 2014 http://switchdevice.com
 
-#include "Spark.h"
+#include "arduino-mock/spark.h"
 
 static SparkMock* gSparkMock = NULL;
 SparkMock* sparkMockInstance() {
