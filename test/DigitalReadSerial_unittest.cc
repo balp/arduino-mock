@@ -2,8 +2,8 @@
 // This example code is in the public domain.
 
 #include "gtest/gtest.h"
-#include "arduino-mock/Arduino.h"
-#include "arduino-mock/Serial.h"
+#include "arduino-mock/arduino.h"
+#include "arduino-mock/serial.h"
 Serial_ Serial;
 
 #include "DigitalReadSerial.ino"
