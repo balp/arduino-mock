@@ -1,0 +1,4 @@
+language: cpp
+compiler:
+  - gcc
+script: cd test && make
