@@ -11,5 +11,5 @@ TEST(loop, pushed) {
   SerialMock* serialMock = serialMockInstance();
   EXPECT_CALL(*serialMock, println(1, 10));
   Serial.println(1, 10);
-  delete serialMock;
+  releaseSerialMock();
 }

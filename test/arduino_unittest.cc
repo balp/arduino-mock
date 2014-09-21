@@ -10,13 +10,13 @@ TEST(digitalRead, 2) {
   EXPECT_CALL(*arduinoMock, digitalRead(2))
     .WillOnce(Return(1));
   digitalRead(2);
-  delete arduinoMock;
+  releaseArduinoMock();
 }
 
 TEST(delay, normal) {
   ArduinoMock* arduinoMock = arduinoMockInstance();
   EXPECT_CALL(*arduinoMock, delay(1));
   delay(1);
-  delete arduinoMock;
+  releaseArduinoMock();
 }
 
