@@ -6,8 +6,6 @@
 
 #include "gtest/gtest.h"
 #include "arduino-mock/arduino.h"
-#include "arduino-mock/serial.h"
-Serial_ Serial;
 
 #include "arduino-mock/spark.h"
 Spark_ Spark;
@@ -19,5 +17,5 @@ TEST(publish, normal) {
   EXPECT_CALL(*sparkMock,
               publish(StrCaseEq("test"), StrCaseEq("test")));
   Spark.publish("test", "test");
-  delete sparkMock;
+  releaseSparkMock();
 }
