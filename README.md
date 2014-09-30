@@ -11,7 +11,9 @@ To run unittest for this mock, please follow this
 instruction.
 
     $ git clone https://github.com/ikeyasu/arduino-mock.git
-    $ cd arduino-mock/test
+    $ cd arduino-mock
+    $ git submodule update --init --recursive
+    $ cd test
     $ make test
     for t in arduino_unittest serial_unittest spark_unittest; do ./$t; done;
     Running main() from gmock_main.cc
