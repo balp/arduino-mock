@@ -99,7 +99,7 @@ gmock_main.a : gmock-all.o gtest-all.o gmock_main.o
 	$(AR) $(ARFLAGS) $@ $^
 
 # Builds Arduino mocks.
-arduino_mock_all.a : arduino.o serial.o spark.o eeprom.o wire.o
+arduino_mock_all.a : arduino.o serial.o spark.o wire.o
 	$(AR) $(ARFLAGS) $@ $^
 
 arduino.o : $(ARDUINO_MOCK_DIR)/include/arduino-mock/arduino.h \
@@ -116,11 +116,12 @@ spark.o : $(ARDUINO_MOCK_DIR)/include/arduino-mock/spark.h \
 		$(ARDUINO_MOCK_DIR)/src/spark.cc
 	$(CXX) $(CPPFLAGS) -I$(ARDUINO_MOCK_DIR) $(CXXFLAGS) -c \
 		$(ARDUINO_MOCK_DIR)/src/spark.cc
-		
-eeprom.o: $(ARDUINO_MOCK_DIR)/include/arduino-mock/eeprom.h \
-		$(ARDUINO_MOCK_DIR)/src/eeprom.cc
-	$(CXX) $(CPPFLAGS) -I$(ARDUINO_MOCK_DIR) $(CXXFLAGS) -c \
-		$(ARDUINO_MOCK_DIR)/src/eeprom.cc
+
+#uncomment this if want to build eeprom unittest and also include eeprom.o as requirement for arduino_mock_all.a		
+#eeprom.o: $(ARDUINO_MOCK_DIR)/include/arduino-mock/eeprom.h \
+#		$(ARDUINO_MOCK_DIR)/src/eeprom.cc
+#	$(CXX) $(CPPFLAGS) -I$(ARDUINO_MOCK_DIR) $(CXXFLAGS) -c \
+#		$(ARDUINO_MOCK_DIR)/src/eeprom.cc
 		
 wire.o: $(ARDUINO_MOCK_DIR)/include/arduino-mock/wire.h \
 		$(ARDUINO_MOCK_DIR)/src/wire.cc
@@ -158,14 +159,14 @@ arduino_unittest : arduino_unittest.o \
 				arduino_mock_all.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 	
-eeprom_unittest.o : $(TEST_DIR)/eeprom_unittest.cc \
-				$(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/eeprom_unittest.cc
+#eeprom_unittest.o : $(TEST_DIR)/eeprom_unittest.cc \
+#				$(GTEST_HEADERS)
+#	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/eeprom_unittest.cc
 
-eeprom_unittest : eeprom_unittest.o \
-				gmock_main.a  \
-				arduino_mock_all.a
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+#eeprom_unittest : eeprom_unittest.o \
+#				gmock_main.a  \
+#				arduino_mock_all.a
+#	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 	
 wire_unittest.o : $(TEST_DIR)/wire_unittest.cc \
 				$(GTEST_HEADERS)
