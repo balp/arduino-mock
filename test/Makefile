@@ -117,7 +117,8 @@ spark.o : $(ARDUINO_MOCK_DIR)/include/arduino-mock/spark.h \
 	$(CXX) $(CPPFLAGS) -I$(ARDUINO_MOCK_DIR) $(CXXFLAGS) -c \
 		$(ARDUINO_MOCK_DIR)/src/spark.cc
 
-#uncomment this if want to build eeprom unittest and also include eeprom.o as requirement for arduino_mock_all.a		
+# uncomment this if want to build eeprom unittest 
+# and also include eeprom.o as requirement for arduino_mock_all.a		
 #eeprom.o: $(ARDUINO_MOCK_DIR)/include/arduino-mock/eeprom.h \
 #		$(ARDUINO_MOCK_DIR)/src/eeprom.cc
 #	$(CXX) $(CPPFLAGS) -I$(ARDUINO_MOCK_DIR) $(CXXFLAGS) -c \
