@@ -16,7 +16,6 @@ class Wire
     void begin(uint8_t);
     void begin(int);
     void beginTransmission(uint8_t);
-    void beginTransmission(int);
     uint8_t endTransmission(void);
     uint8_t endTransmission(uint8_t);
     uint8_t requestFrom(uint8_t, uint8_t);
@@ -41,7 +40,6 @@ class WireMock
     MOCK_METHOD1(begin, void(uint8_t));
     MOCK_METHOD1(begin, void(int));
     MOCK_METHOD1(beginTransmission, void(uint8_t));
-    MOCK_METHOD1(beginTransmission, void(int));
     MOCK_METHOD0(endTransmission, uint8_t(void));
     MOCK_METHOD1(endTransmission, uint8_t(uint8_t));
     MOCK_METHOD2(requestFrom, uint8_t(uint8_t, uint8_t));

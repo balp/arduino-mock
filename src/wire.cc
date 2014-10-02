@@ -33,9 +33,6 @@ void Wire::beginTransmission(uint8_t a){
   p_WireMock->beginTransmission(a);
 }
 
-void Wire::beginTransmission(int a){
-  p_WireMock->beginTransmission(a);
-}
 
 uint8_t Wire::endTransmission(void){
   return p_WireMock->endTransmission();
