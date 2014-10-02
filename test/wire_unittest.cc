@@ -1,18 +1,18 @@
 #include "gtest/gtest.h"
 #include "arduino-mock/wire.h"
 #include "arduino-mock/arduino.h"
-TwoWire twowire;
+Wire wire;
 
 using ::testing::Return;
 TEST(wire, access) {
   uint8_t a = 10;
   uint8_t b = 12;
-  TwoWireMock* mock = TwoWireMockInstance();
+  WireMock* mock = WireMockInstance();
   EXPECT_CALL(*mock, endTransmission(10));
   EXPECT_CALL(*mock, begin());
   EXPECT_CALL(*mock, requestFrom(a,b));
-  twowire.endTransmission(10);
-  twowire.begin();
-  twowire.requestFrom(a,b);
-  releaseTwoWireMock();
+  wire.endTransmission(10);
+  wire.begin();
+  wire.requestFrom(a,b);
+  releaseWireMock();
 }
