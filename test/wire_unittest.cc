@@ -5,14 +5,17 @@ Wire wire;
 
 using ::testing::Return;
 TEST(wire, access) {
-  uint8_t a = 10;
-  uint8_t b = 12;
+  uint8_t value1 = 10;
+  uint8_t value2 = 12;
+  char text[] = "Mock test";
   WireMock* mock = WireMockInstance();
-  EXPECT_CALL(*mock, endTransmission(10));
+  EXPECT_CALL(*mock, endTransmission(value1));
   EXPECT_CALL(*mock, begin());
-  EXPECT_CALL(*mock, requestFrom(a,b));
-  wire.endTransmission(10);
+  EXPECT_CALL(*mock, requestFrom(value1,value2));
+  EXPECT_CALL(*mock, write(text));
+  wire.endTransmission(value1);
   wire.begin();
-  wire.requestFrom(a,b);
+  wire.requestFrom(value1,value2);
+  wire.write(text);
   releaseWireMock();
 }
