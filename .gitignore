@@ -58,5 +58,3 @@ build*/
 
 #ignore binaries
 *_unittest
-/test/gmock
-/test/googletest
