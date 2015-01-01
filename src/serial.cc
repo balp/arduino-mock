@@ -90,5 +90,5 @@ uint8_t Serial_::begin(uint16_t port) {
 }
 
 void Serial_::flush() {
-    return;
+  return gSerialMock->flush();
 }

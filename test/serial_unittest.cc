@@ -13,3 +13,10 @@ TEST(loop, pushed) {
   Serial.println(1, 10);
   releaseSerialMock();
 }
+
+TEST(serial, flush) {
+  SerialMock* serialMock = serialMockInstance();
+  EXPECT_CALL(*serialMock, flush());
+  Serial.flush();
+  releaseSerialMock();
+}
