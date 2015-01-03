@@ -6,7 +6,7 @@ A GMock stub library for a mock of Arduino libraries.
 How it works
 ============
 
-This mock can use for Arduino sketch.
+This is the mock library for Arduino sketch program.
 To run unittest for this mock, please follow this
 instruction.
 
@@ -55,11 +55,16 @@ instruction.
     [==========] 1 test from 1 test case ran. (1 ms total)
     [  PASSED  ] 1 test.
 
-Installation to your app
-========================
+Sample and how to install to your app
+====================================
+
+Please refer to
+https://github.com/ikeyasu/arduino-gmock-sample
 
 You need to copy "make/Makefile" to your app's dir
 and modify it.
 
-Please refer to
-https://github.com/ikeyasu/arduino-gmock-sample
+Contribution
+============
+
+Please send a pull-request.
