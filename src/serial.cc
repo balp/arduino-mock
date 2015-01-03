@@ -88,3 +88,7 @@ size_t Serial_::println(void) {
 uint8_t Serial_::begin(uint16_t port) {
   return gSerialMock->begin(port);
 }
+
+void Serial_::flush() {
+  return gSerialMock->flush();
+}
