@@ -36,6 +36,9 @@ class SerialMock {
 
     MOCK_METHOD1(begin, uint8_t(uint16_t));
 
+    MOCK_METHOD0(available, uint8_t());
+    MOCK_METHOD0(read, uint8_t());
+
     MOCK_METHOD0(flush, void());
 
     /* Not implemented yet
@@ -72,6 +75,9 @@ class Serial_ {
     size_t write(const char *str);
 
     uint8_t begin(uint16_t);
+
+    uint8_t available();
+    uint8_t read();
 
     static void flush();
 
