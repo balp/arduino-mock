@@ -73,6 +73,7 @@ class Serial_ {
 
     size_t write(uint8_t);
     size_t write(const char *str);
+    size_t write(const uint8_t *buffer, size_t size);
 
     uint8_t begin(uint32_t);
 
@@ -85,7 +86,6 @@ class Serial_ {
     TODO: Not implemented yet.
     int getWriteError();
     void clearWriteError();
-    size_t write(const uint8_t *buffer, size_t size);
     static size_t print(const __FlashStringHelper *);
     static size_t print(const String &);
     static size_t print(const Printable&);

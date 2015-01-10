@@ -95,6 +95,11 @@ size_t Serial_::write(const char *str)
     return gSerialMock->write(str);
 }
 
+size_t Serial_::write(const uint8_t *buffer, size_t size)
+{
+    return gSerialMock->write(buffer, size);
+}
+
 uint8_t Serial_::begin(uint32_t port) {
   return gSerialMock->begin(port);
 }
