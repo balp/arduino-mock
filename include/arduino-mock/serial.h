@@ -7,6 +7,8 @@
 #include <stdint.h>
 #include <gmock/gmock.h>
 
+#include <string>
+
 #define DEC 10
 #define HEX 16
 #define OCT 8
@@ -69,7 +71,7 @@ class Serial_ {
     static size_t println(long, int = DEC);
     static size_t println(unsigned long, int = DEC);
     static size_t println(double, int = 2);
-    static size_t println(void);
+    static sizeMOCK_METHOD1_t println(void);
 
     size_t write(uint8_t);
     size_t write(const char *str);
@@ -97,5 +99,27 @@ class Serial_ {
 
 SerialMock* serialMockInstance();
 void releaseSerialMock();
+
+
+/*
+ * Thsi is a helper class which can be Invoked on EXPECT_CALL to gather data
+ * from repeated calls to Serial functions. For example usage, see the unit
+ * tests in test/serial_unittest.cc
+ *
+ */
+class stringCapture {
+public:
+    stringCapture();
+    bool captureUInt8(uint8_t c);
+    bool captureUInt16(uint16_t c);
+    bool captureCStr(const uint8_t *buffer, size_t size);
+    void clear();
+    std::string get();
+
+private:
+    std::stringstream d;
+};
+
+
 
 #endif // SERIAL_H
