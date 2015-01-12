@@ -21,7 +21,8 @@ TEST(publish, normal) {
   EXPECT_CALL(*sparkMock, variable(StrCaseEq("analogvalue"), &analogvalue));
   EXPECT_CALL(*sparkMock, function(StrCaseEq("funckey"), StrCaseEq("funcname")));
   EXPECT_CALL(*sparkMock, publish(StrCaseEq("test"), StrCaseEq("test")));
-  EXPECT_CALL(*sparkMock, subscribe(StrCaseEq("temp_test"), StrCaseEq("myHandler")));
+  EXPECT_CALL(*sparkMock, subscribe(StrCaseEq("temp_test"),
+                                    StrCaseEq("myHandler")));
   EXPECT_CALL(*sparkMock, connect());
   EXPECT_CALL(*sparkMock, disconnect());
   EXPECT_CALL(*sparkMock, connected());

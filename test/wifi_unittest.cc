@@ -7,7 +7,7 @@ WiFi wifi;
 using ::testing::Return;
 TEST(wire, access) {
   WiFiMock* mock = WiFiMockInstance();
-  char IPAddr[]="192.168.0.1";
+  char IPAddr[] = "192.168.0.1";
   uint8_t n_times = 10;
   EXPECT_CALL(*mock, on());
   EXPECT_CALL(*mock, off());
@@ -27,7 +27,7 @@ TEST(wire, access) {
   EXPECT_CALL(*mock, localIP());
   EXPECT_CALL(*mock, subnetMask());
   EXPECT_CALL(*mock, gatewayIP());
-  
+
   wifi.on();
   wifi.off();
   wifi.connect();

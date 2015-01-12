@@ -22,7 +22,7 @@ class SparkMock {
     MOCK_METHOD0(disconnect, void());
     MOCK_METHOD0(connected, bool());
     MOCK_METHOD0(process, void());
-    MOCK_METHOD0(deviceID, char*());
+    MOCK_METHOD0(deviceID, char * ());
     MOCK_METHOD0(sleep, void());
     MOCK_METHOD1(sleep, void(int));
     MOCK_METHOD2(sleep, void(const char*, int));
@@ -43,7 +43,8 @@ class Spark_ {
     char* deviceID(); // return the device ID
     void sleep(); // put the module in sleep mode
     void sleep(int seconds); // put the module in sleep mode in [seconds] period
-    void sleep(const char* sleep_mode, int seconds); // put the wifi module in deep sleep mode
+    void sleep(const char* sleep_mode,
+               int seconds); // put the wifi module in deep sleep mode
     void sleep(uint16_t wakeUpPin, uint16_t edgeTriggerMode, int seconds);
     void syncTime(); // Synchronize time with the Spark Cloud
 };

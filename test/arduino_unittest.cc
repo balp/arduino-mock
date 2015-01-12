@@ -7,8 +7,7 @@
 using ::testing::Return;
 TEST(digitalRead, 2) {
   ArduinoMock* arduinoMock = arduinoMockInstance();
-  EXPECT_CALL(*arduinoMock, digitalRead(2))
-    .WillOnce(Return(1));
+  EXPECT_CALL(*arduinoMock, digitalRead(2)).WillOnce(Return(1));
   digitalRead(2);
   releaseArduinoMock();
 }

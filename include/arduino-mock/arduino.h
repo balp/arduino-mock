@@ -7,7 +7,7 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
-extern "C"{
+extern "C" {
 #endif
 
 #define HIGH 0x1
@@ -76,7 +76,7 @@ void loop(void);
 #define UNUSED(expr) do { (void)(expr); } while (0)
 
 class ArduinoMock {
-public:
+  public:
     MOCK_METHOD2(pinMode, void (uint8_t, uint8_t));
     MOCK_METHOD2(analogWrite, void (uint8_t, int));
     MOCK_METHOD2(digitalWrite, void (uint8_t, uint8_t));

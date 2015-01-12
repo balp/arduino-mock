@@ -4,17 +4,17 @@
 
 static SerialMock* gSerialMock = NULL;
 SerialMock* serialMockInstance() {
-    if(!gSerialMock) {
-        gSerialMock = new SerialMock();
-    }
-    return gSerialMock;
+  if(!gSerialMock) {
+    gSerialMock = new SerialMock();
+  }
+  return gSerialMock;
 }
 
 void releaseSerialMock() {
-    if(gSerialMock) {
-        delete gSerialMock;
-        gSerialMock = NULL;
-    }
+  if(gSerialMock) {
+    delete gSerialMock;
+    gSerialMock = NULL;
+  }
 }
 
 size_t Serial_::print(const char *s) {

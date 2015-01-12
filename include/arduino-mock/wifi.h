@@ -6,8 +6,7 @@
 #include <gmock/gmock.h>
 #include <stdint.h>
 
-class WiFi
-{
+class WiFi {
   public:
     void on();  // turns on WiFi module
     void off();  // turns off WiFi module
@@ -24,14 +23,14 @@ class WiFi
     char* SSID();  // return SSID of the network
     int RSSI();  // return signal strength
     void ping(char*); // ping an IP address
-    void ping(char*, uint8_t); // ping an IP address with a specified number of times
+    void ping(char*,
+              uint8_t); // ping an IP address with a specified number of times
     char* localIP();  // Return local IP address
     char* subnetMask(); // Return Subnet mask of the network
     char* gatewayIP();  // Return the gateway IP address
 };
 
-class WiFiMock
-{
+class WiFiMock {
   public:
     MOCK_METHOD0(on, void());
     MOCK_METHOD0(off, void());
@@ -45,13 +44,13 @@ class WiFiMock
     MOCK_METHOD0(clearCredentials, bool());
     MOCK_METHOD0(hasCredentials, bool());
     MOCK_METHOD0(macAddress, uint8_t());
-    MOCK_METHOD0(SSID, char*());
+    MOCK_METHOD0(SSID, char * ());
     MOCK_METHOD0(RSSI, int());
     MOCK_METHOD1(ping, void(char*));
     MOCK_METHOD2(ping, void(char*, uint8_t));
-    MOCK_METHOD0(localIP, char*());
-    MOCK_METHOD0(subnetMask, char*());
-    MOCK_METHOD0(gatewayIP, char*());
+    MOCK_METHOD0(localIP, char * ());
+    MOCK_METHOD0(subnetMask, char * ());
+    MOCK_METHOD0(gatewayIP, char * ());
 };
 
 WiFiMock* WiFiMockInstance();
