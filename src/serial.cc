@@ -115,8 +115,8 @@ uint8_t Serial_::read() {
 
 
 stringCapture::stringCapture()
-  : d()
-{}
+  : d() {
+}
 
 bool stringCapture::captureUInt16(uint16_t c) {
   d << c;
