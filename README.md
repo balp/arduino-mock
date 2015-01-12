@@ -68,3 +68,26 @@ Contribution
 ============
 
 Please send a pull-request.
+You need to run code formatter before commiting.
+
+Install formatter
+-----------------
+
+You need [astyle](http://astyle.sourceforge.net) 2.03.
+
+Unbutun 14.04 LTS:
+
+    $ sudo apt-get install astyle=2.03-1
+
+Mac (Homebrew):
+
+    $ brew tap ikeyasu/myversions
+    $ brew install astyle203
+
+Windows:
+Please download from [here](http://sourceforge.net/projects/astyle/files/astyle/astyle%202.03/).
+
+How to run formatter
+--------------------
+
+    $ ./script/codeformatter.sh
