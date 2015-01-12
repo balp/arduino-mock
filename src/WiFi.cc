@@ -1,4 +1,4 @@
-#include "arduino-mock/wifi.h"
+#include "arduino-mock/WiFi.h"
 
 static WiFiMock* p_WiFiMock = NULL;
 WiFiMock* WiFiMockInstance() {

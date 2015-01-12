@@ -1,6 +1,6 @@
 /** Implementation of EEPROM mock **/
 
-#include "arduino-mock/eeprom.h"
+#include "arduino-mock/EEPROM.h"
 
 static EEPROMMock* p_EEPROMMock = NULL;
 EEPROMMock* EEPROMMockInstance() {

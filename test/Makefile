@@ -45,7 +45,7 @@ CXXFLAGS += -g -Wall -Wextra -pthread \
 
 # All tests produced by this Makefile.  Remember to add new tests you
 # created to the list.
-TESTS = arduino_unittest wire_unittest serial_unittest spark_unittest eeprom_unittest wifi_unittest serialHelper_unittest
+TESTS = Arduino_unittest Wire_unittest Serial_unittest Spark_unittest EEPROM_unittest WiFi_unittest serialHelper_unittest
 
 # All Google Test headers.  Usually you shouldn't change this
 # definition.
@@ -103,52 +103,52 @@ gmock_main.a : gmock-all.o gtest-all.o gmock_main.o
 	$(AR) $(ARFLAGS) $@ $^
 
 # Builds Arduino mocks.
-arduino_mock_all.a : arduino.o serial.o serialHelper.o spark.o eeprom.o wire.o wifi.o
+arduino_mock_all.a : Arduino.o Serial.o serialHelper.o Spark.o EEPROM.o Wire.o WiFi.o
 	$(AR) $(ARFLAGS) $@ $^
 
-arduino.o : $(ARDUINO_MOCK_DIR)/include/arduino-mock/arduino.h \
-		$(ARDUINO_MOCK_DIR)/src/arduino.cc
+Arduino.o : $(ARDUINO_MOCK_DIR)/include/arduino-mock/Arduino.h \
+		$(ARDUINO_MOCK_DIR)/src/Arduino.cc
 	$(CXX) $(CPPFLAGS) -I$(ARDUINO_MOCK_DIR) $(CXXFLAGS) -c \
-		$(ARDUINO_MOCK_DIR)/src/arduino.cc
+		$(ARDUINO_MOCK_DIR)/src/Arduino.cc
 
-serial.o : $(ARDUINO_MOCK_DIR)/include/arduino-mock/serial.h \
-		$(ARDUINO_MOCK_DIR)/src/serial.cc
+Serial.o : $(ARDUINO_MOCK_DIR)/include/arduino-mock/Serial.h \
+		$(ARDUINO_MOCK_DIR)/src/Serial.cc
 	$(CXX) $(CPPFLAGS) -I$(ARDUINO_MOCK_DIR) $(CXXFLAGS) -c \
-		$(ARDUINO_MOCK_DIR)/src/serial.cc
+		$(ARDUINO_MOCK_DIR)/src/Serial.cc
 
 serialHelper.o : $(ARDUINO_MOCK_DIR)/include/arduino-mock/serialHelper.h \
 		$(ARDUINO_MOCK_DIR)/src/serialHelper.cc
 	$(CXX) $(CPPFLAGS) -I$(ARDUINO_MOCK_DIR) $(CXXFLAGS) -c \
 		$(ARDUINO_MOCK_DIR)/src/serialHelper.cc
 
-spark.o : $(ARDUINO_MOCK_DIR)/include/arduino-mock/spark.h \
-		$(ARDUINO_MOCK_DIR)/src/spark.cc
+Spark.o : $(ARDUINO_MOCK_DIR)/include/arduino-mock/Spark.h \
+		$(ARDUINO_MOCK_DIR)/src/Spark.cc
 	$(CXX) $(CPPFLAGS) -I$(ARDUINO_MOCK_DIR) $(CXXFLAGS) -c \
-		$(ARDUINO_MOCK_DIR)/src/spark.cc
+		$(ARDUINO_MOCK_DIR)/src/Spark.cc
 
-eeprom.o: $(ARDUINO_MOCK_DIR)/include/arduino-mock/eeprom.h \
-		$(ARDUINO_MOCK_DIR)/src/eeprom.cc
+EEPROM.o: $(ARDUINO_MOCK_DIR)/include/arduino-mock/EEPROM.h \
+		$(ARDUINO_MOCK_DIR)/src/EEPROM.cc
 	$(CXX) $(CPPFLAGS) -I$(ARDUINO_MOCK_DIR) $(CXXFLAGS) -c \
-		$(ARDUINO_MOCK_DIR)/src/eeprom.cc
+		$(ARDUINO_MOCK_DIR)/src/EEPROM.cc
 
-wire.o: $(ARDUINO_MOCK_DIR)/include/arduino-mock/wire.h \
-		$(ARDUINO_MOCK_DIR)/src/wire.cc
+Wire.o: $(ARDUINO_MOCK_DIR)/include/arduino-mock/Wire.h \
+		$(ARDUINO_MOCK_DIR)/src/Wire.cc
 	$(CXX) $(CPPFLAGS) -I$(ARDUINO_MOCK_DIR) $(CXXFLAGS) -c \
-		$(ARDUINO_MOCK_DIR)/src/wire.cc
+		$(ARDUINO_MOCK_DIR)/src/Wire.cc
 
-wifi.o: $(ARDUINO_MOCK_DIR)/include/arduino-mock/wire.h \
-		$(ARDUINO_MOCK_DIR)/src/wifi.cc
+WiFi.o: $(ARDUINO_MOCK_DIR)/include/arduino-mock/WiFi.h \
+		$(ARDUINO_MOCK_DIR)/src/WiFi.cc
 	$(CXX) $(CPPFLAGS) -I$(ARDUINO_MOCK_DIR) $(CXXFLAGS) -c \
-		$(ARDUINO_MOCK_DIR)/src/wifi.cc
+		$(ARDUINO_MOCK_DIR)/src/WiFi.cc
 # Builds a test.  A test should link with either gtest.a or
 # gtest_main.a, depending on whether it defines its own main()
 # function.
 
-serial_unittest.o : $(TEST_DIR)/serial_unittest.cc \
+Serial_unittest.o : $(TEST_DIR)/Serial_unittest.cc \
 				$(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/serial_unittest.cc
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/Serial_unittest.cc
 
-serial_unittest : serial_unittest.o \
+Serial_unittest : Serial_unittest.o \
 				gmock_main.a  \
 				arduino_mock_all.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
@@ -162,47 +162,47 @@ serialHelper_unittest : serialHelper_unittest.o \
 				arduino_mock_all.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
-spark_unittest.o : $(TEST_DIR)/spark_unittest.cc \
+Spark_unittest.o : $(TEST_DIR)/Spark_unittest.cc \
 				$(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/spark_unittest.cc
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/Spark_unittest.cc
 
-spark_unittest : spark_unittest.o \
+Spark_unittest : Spark_unittest.o \
 				gmock_main.a  \
 				arduino_mock_all.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
-arduino_unittest.o : $(TEST_DIR)/arduino_unittest.cc \
+Arduino_unittest.o : $(TEST_DIR)/Arduino_unittest.cc \
 				$(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/arduino_unittest.cc
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/Arduino_unittest.cc
 
-arduino_unittest : arduino_unittest.o \
+Arduino_unittest : Arduino_unittest.o \
 				gmock_main.a  \
 				arduino_mock_all.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
-eeprom_unittest.o : $(TEST_DIR)/eeprom_unittest.cc \
+EEPROM_unittest.o : $(TEST_DIR)/EEPROM_unittest.cc \
 				$(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/eeprom_unittest.cc
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/EEPROM_unittest.cc
 
-eeprom_unittest : eeprom_unittest.o \
+EEPROM_unittest : EEPROM_unittest.o \
 				gmock_main.a  \
 				arduino_mock_all.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
-wire_unittest.o : $(TEST_DIR)/wire_unittest.cc \
+Wire_unittest.o : $(TEST_DIR)/Wire_unittest.cc \
 				$(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/wire_unittest.cc
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/Wire_unittest.cc
 
-wire_unittest : wire_unittest.o \
+Wire_unittest : Wire_unittest.o \
 				gmock_main.a  \
 				arduino_mock_all.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
-wifi_unittest.o : $(TEST_DIR)/wifi_unittest.cc \
+WiFi_unittest.o : $(TEST_DIR)/WiFi_unittest.cc \
 				$(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/wifi_unittest.cc
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/WiFi_unittest.cc
 
-wifi_unittest : wifi_unittest.o \
+WiFi_unittest : WiFi_unittest.o \
 				gmock_main.a  \
 				arduino_mock_all.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
