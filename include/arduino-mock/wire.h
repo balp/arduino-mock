@@ -9,7 +9,7 @@
 #define I2C1 0x00000000
 #define WIRE_INTERFACES_COUNT 1
 
-class Wire {
+class Wire_ {
   public:
     void begin();
     void begin(uint8_t);
