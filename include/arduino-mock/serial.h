@@ -71,7 +71,7 @@ class Serial_ {
     static size_t println(long, int = DEC);
     static size_t println(unsigned long, int = DEC);
     static size_t println(double, int = 2);
-    static sizeMOCK_METHOD1_t println(void);
+    static size_t println(void);
 
     size_t write(uint8_t);
     size_t write(const char *str);
