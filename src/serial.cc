@@ -85,19 +85,16 @@ size_t Serial_::println(void) {
   return gSerialMock->println();
 }
 
-size_t Serial_::write(uint8_t val)
-{
-    return gSerialMock->write(val);
+size_t Serial_::write(uint8_t val) {
+  return gSerialMock->write(val);
 }
 
-size_t Serial_::write(const char *str)
-{
-    return gSerialMock->write(str);
+size_t Serial_::write(const char *str) {
+  return gSerialMock->write(str);
 }
 
-size_t Serial_::write(const uint8_t *buffer, size_t size)
-{
-    return gSerialMock->write(buffer, size);
+size_t Serial_::write(const uint8_t *buffer, size_t size) {
+  return gSerialMock->write(buffer, size);
 }
 
 uint8_t Serial_::begin(uint32_t port) {
@@ -118,34 +115,29 @@ uint8_t Serial_::read() {
 
 
 stringCapture::stringCapture()
-    : d()
+  : d()
 {}
 
-bool stringCapture::captureUInt16(uint16_t c)
-{
-    d << c;
-    return true;
+bool stringCapture::captureUInt16(uint16_t c) {
+  d << c;
+  return true;
 }
 
-bool stringCapture::captureUInt8(uint8_t c)
-{
-    d << c;
-    return true;
+bool stringCapture::captureUInt8(uint8_t c) {
+  d << c;
+  return true;
 }
 
-bool stringCapture::captureCStr(const uint8_t *buffer, size_t size)
-{
-    d << std::string((const char*)buffer, size);
-    return true;
+bool stringCapture::captureCStr(const uint8_t *buffer, size_t size) {
+  d << std::string((const char*)buffer, size);
+  return true;
 }
 
-void stringCapture::clear()
-{
-    return d.str("");
+void stringCapture::clear() {
+  return d.str("");
 }
 
-std::string stringCapture::get()
-{
-    return d.str();
+std::string stringCapture::get() {
+  return d.str();
 }
 
