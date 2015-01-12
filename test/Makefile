@@ -71,7 +71,7 @@ clean :
 			arduino_mock_all.a *.o
 
 format :
-	astyle --mode=c --suffix=none --style=java --indent=spaces=2 --indent-classes --max-code-length=80 --break-after-logical --pad-oper ../include/*/*.h ../**/*.cc
+	../script/codeformatter.sh
 
 # Builds gtest.a and gtest_main.a.
 
