@@ -1,10 +1,22 @@
+/*
+ * serialHelper - helper functions for unittesting serial functions.
+ *
+ */
 #ifndef SERIALHELPER_H
 #define SERIALHELPER_H
 
+
 /*
+ * stringCapture
  * This is a helper class which can be Invoked on EXPECT_CALL to gather data
  * from repeated calls to Serial functions. For example usage, see the unit
  * tests in test/serial_unittest.cc
+ *
+ * Example usage:
+ *
+ * EXPECT_CALL(*sm, write(Matcher<const uint8_t*>(_), (_)))
+ *       .Times(AtLeast(1))
+ *       .WillRepeatedly(Invoke(&c, &stringCapture::captureCStr));
  *
  */
 class stringCapture {
