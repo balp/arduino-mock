@@ -5,6 +5,9 @@
 #ifndef SERIALHELPER_H
 #define SERIALHELPER_H
 
+#include <stdint.h>
+#include <string>
+#include <sstream>
 
 /*
  * stringCapture
