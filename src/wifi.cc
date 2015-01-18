@@ -15,78 +15,78 @@ void releaseWiFiMock() {
   }
 }
 
-void WiFi::on() {
+void WiFi_::on() {
   p_WiFiMock->on();
 }
 
-void WiFi::off() {
+void WiFi_::off() {
   p_WiFiMock->off();
 }
 
-void WiFi::connect() {
+void WiFi_::connect() {
   p_WiFiMock->connect();
 }
 
-void WiFi::disconnect() {
+void WiFi_::disconnect() {
   p_WiFiMock->disconnect();
 }
 
-bool WiFi::connecting() {
+bool WiFi_::connecting() {
   return p_WiFiMock->connecting();
 }
 
-bool WiFi::ready() {
+bool WiFi_::ready() {
   return p_WiFiMock->ready();
 }
 
-void WiFi::listen() {
+void WiFi_::listen() {
   p_WiFiMock->listen();
 }
 
-bool WiFi::listening() {
+bool WiFi_::listening() {
   return p_WiFiMock->listening();
 }
 
-void WiFi::setCredentials() {
+void WiFi_::setCredentials() {
   p_WiFiMock->setCredentials();
 }
 
-bool WiFi::clearCredentials() {
+bool WiFi_::clearCredentials() {
   return p_WiFiMock->clearCredentials();
 }
 
-bool WiFi::hasCredentials() {
+bool WiFi_::hasCredentials() {
   return p_WiFiMock->hasCredentials();
 }
 
-uint8_t WiFi::macAddress() {
+uint8_t WiFi_::macAddress() {
   return p_WiFiMock->macAddress();
 }
 
-char* WiFi::SSID() {
+char* WiFi_::SSID() {
   return p_WiFiMock->SSID();
 }
 
-int WiFi::RSSI() {
+int WiFi_::RSSI() {
   return p_WiFiMock->RSSI();
 }
 
-void WiFi::ping(char* a) {
+void WiFi_::ping(char* a) {
   p_WiFiMock->ping(a);
 }
 
-void WiFi::ping(char* a, uint8_t b) {
+void WiFi_::ping(char* a, uint8_t b) {
   p_WiFiMock->ping(a, b);
 }
 
-char* WiFi::localIP() {
+char* WiFi_::localIP() {
   return p_WiFiMock->localIP();
 }
 
-char* WiFi::subnetMask() {
+char* WiFi_::subnetMask() {
   return p_WiFiMock->subnetMask();
 }
 
-char* WiFi::gatewayIP() {
+char* WiFi_::gatewayIP() {
   return p_WiFiMock->gatewayIP();
 }

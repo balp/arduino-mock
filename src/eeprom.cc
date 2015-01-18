@@ -17,10 +17,10 @@ void releaseEEPROMMock() {
   }
 }
 
-uint8_t EEPROM::read(int a) {
+uint8_t EEPROM_::read(int a) {
   return p_EEPROMMock->read(a);
 }
 
-void EEPROM::write(int a, uint8_t b) {
+void EEPROM_::write(int a, uint8_t b) {
   p_EEPROMMock->write(a, b);
 }

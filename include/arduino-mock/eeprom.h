@@ -8,7 +8,7 @@ EEPROM mock
 #include <stdint.h>
 #include <gmock/gmock.h>
 
-class EEPROM {
+class EEPROM_ {
   public:
     uint8_t read(int a);
     void write(int a,  uint8_t b);

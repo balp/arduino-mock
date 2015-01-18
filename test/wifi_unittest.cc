@@ -2,7 +2,7 @@
 #include "arduino-mock/wifi.h"
 #include "arduino-mock/arduino.h"
 
-WiFi wifi;
+WiFi_ wifi;
 
 using ::testing::Return;
 TEST(wire, access) {

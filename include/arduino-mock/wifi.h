@@ -6,7 +6,7 @@
 #include <gmock/gmock.h>
 #include <stdint.h>
 
-class WiFi {
+class WiFi_ {
   public:
     void on();  // turns on WiFi module
     void off();  // turns off WiFi module
