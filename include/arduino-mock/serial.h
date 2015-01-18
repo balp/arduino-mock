@@ -36,6 +36,9 @@ class SerialMock {
 
     MOCK_METHOD1(begin, uint8_t(uint16_t));
 
+    MOCK_METHOD0(available, uint8_t());
+    MOCK_METHOD0(read, uint8_t());
+
     MOCK_METHOD0(flush, void());
 
     /* Not implemented yet
@@ -68,7 +71,14 @@ class Serial_ {
     static size_t println(double, int = 2);
     static size_t println(void);
 
-    uint8_t begin(uint16_t);
+    size_t write(uint8_t);
+    size_t write(const char *str);
+    size_t write(const uint8_t *buffer, size_t size);
+
+    uint8_t begin(uint32_t);
+
+    uint8_t available();
+    uint8_t read();
 
     static void flush();
 
@@ -76,9 +86,6 @@ class Serial_ {
     TODO: Not implemented yet.
     int getWriteError();
     void clearWriteError();
-    size_t write(uint8_t);
-    size_t write(const char *str);
-    size_t write(const uint8_t *buffer, size_t size);
     static size_t print(const __FlashStringHelper *);
     static size_t print(const String &);
     static size_t print(const Printable&);
@@ -90,5 +97,6 @@ class Serial_ {
 
 SerialMock* serialMockInstance();
 void releaseSerialMock();
+
 
 #endif // SERIAL_H

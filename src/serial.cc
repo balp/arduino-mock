@@ -85,10 +85,30 @@ size_t Serial_::println(void) {
   return gSerialMock->println();
 }
 
-uint8_t Serial_::begin(uint16_t port) {
+size_t Serial_::write(uint8_t val) {
+  return gSerialMock->write(val);
+}
+
+size_t Serial_::write(const char *str) {
+  return gSerialMock->write(str);
+}
+
+size_t Serial_::write(const uint8_t *buffer, size_t size) {
+  return gSerialMock->write(buffer, size);
+}
+
+uint8_t Serial_::begin(uint32_t port) {
   return gSerialMock->begin(port);
 }
 
 void Serial_::flush() {
   return gSerialMock->flush();
+}
+
+uint8_t Serial_::available() {
+  return gSerialMock->available();
+}
+
+uint8_t Serial_::read() {
+  return gSerialMock->read();
 }

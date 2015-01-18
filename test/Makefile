@@ -45,7 +45,7 @@ CXXFLAGS += -g -Wall -Wextra -pthread \
 
 # All tests produced by this Makefile.  Remember to add new tests you
 # created to the list.
-TESTS = arduino_unittest wire_unittest serial_unittest spark_unittest eeprom_unittest wifi_unittest
+TESTS = arduino_unittest wire_unittest serial_unittest spark_unittest eeprom_unittest wifi_unittest serialHelper_unittest
 
 # All Google Test headers.  Usually you shouldn't change this
 # definition.
@@ -103,7 +103,7 @@ gmock_main.a : gmock-all.o gtest-all.o gmock_main.o
 	$(AR) $(ARFLAGS) $@ $^
 
 # Builds Arduino mocks.
-arduino_mock_all.a : arduino.o serial.o spark.o eeprom.o wire.o wifi.o
+arduino_mock_all.a : arduino.o serial.o serialHelper.o spark.o eeprom.o wire.o wifi.o
 	$(AR) $(ARFLAGS) $@ $^
 
 arduino.o : $(ARDUINO_MOCK_DIR)/include/arduino-mock/arduino.h \
@@ -115,6 +115,11 @@ serial.o : $(ARDUINO_MOCK_DIR)/include/arduino-mock/serial.h \
 		$(ARDUINO_MOCK_DIR)/src/serial.cc
 	$(CXX) $(CPPFLAGS) -I$(ARDUINO_MOCK_DIR) $(CXXFLAGS) -c \
 		$(ARDUINO_MOCK_DIR)/src/serial.cc
+
+serialHelper.o : $(ARDUINO_MOCK_DIR)/include/arduino-mock/serialHelper.h \
+		$(ARDUINO_MOCK_DIR)/src/serialHelper.cc
+	$(CXX) $(CPPFLAGS) -I$(ARDUINO_MOCK_DIR) $(CXXFLAGS) -c \
+		$(ARDUINO_MOCK_DIR)/src/serialHelper.cc
 
 spark.o : $(ARDUINO_MOCK_DIR)/include/arduino-mock/spark.h \
 		$(ARDUINO_MOCK_DIR)/src/spark.cc
@@ -144,6 +149,15 @@ serial_unittest.o : $(TEST_DIR)/serial_unittest.cc \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/serial_unittest.cc
 
 serial_unittest : serial_unittest.o \
+				gmock_main.a  \
+				arduino_mock_all.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
+serialHelper_unittest.o : $(TEST_DIR)/serialHelper_unittest.cc \
+				$(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/serialHelper_unittest.cc
+
+serialHelper_unittest : serialHelper_unittest.o \
 				gmock_main.a  \
 				arduino_mock_all.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
