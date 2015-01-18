@@ -13,7 +13,7 @@ class EEPROM_ {
     uint8_t read(int a);
     void write(int a,  uint8_t b);
 };
-
+extern EEPROM_ EEPROM;
 
 class EEPROMMock {
   public:

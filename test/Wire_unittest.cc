@@ -1,10 +1,9 @@
 #include "gtest/gtest.h"
 #include "arduino-mock/Wire.h"
 #include "arduino-mock/Arduino.h"
-Wire_ wire;
 
 using ::testing::Return;
-TEST(wire, access) {
+TEST(Wire, access) {
   uint8_t value1 = 10;
   uint8_t value2 = 12;
   char text[] = "Mock test";
@@ -19,14 +18,14 @@ TEST(wire, access) {
   EXPECT_CALL(*mock, read());
   EXPECT_CALL(*mock, onReceive(callback_func));
   EXPECT_CALL(*mock, onRequest(callback_func));
-  wire.begin();
-  wire.beginTransmission(value1);
-  wire.endTransmission(value1);
-  wire.requestFrom(value1, value2);
-  wire.write(text);
-  wire.available();
-  wire.read();
-  wire.onReceive(callback_func);
-  wire.onRequest(callback_func);
+  Wire.begin();
+  Wire.beginTransmission(value1);
+  Wire.endTransmission(value1);
+  Wire.requestFrom(value1, value2);
+  Wire.write(text);
+  Wire.available();
+  Wire.read();
+  Wire.onReceive(callback_func);
+  Wire.onRequest(callback_func);
   releaseWireMock();
 }

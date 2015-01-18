@@ -24,3 +24,6 @@ uint8_t EEPROM_::read(int a) {
 void EEPROM_::write(int a, uint8_t b) {
   p_EEPROMMock->write(a, b);
 }
+
+// Preinstantiate Objects
+EEPROM_ EEPROM;

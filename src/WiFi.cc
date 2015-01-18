@@ -90,3 +90,6 @@ char* WiFi_::subnetMask() {
 char* WiFi_::gatewayIP() {
   return p_WiFiMock->gatewayIP();
 }
+
+// Preinstantiate Objects
+WiFi_ WiFi;

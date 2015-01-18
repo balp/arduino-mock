@@ -39,6 +39,7 @@ class Wire_ {
       return write((uint8_t)n);
     }
 };
+extern Wire_ Wire;
 
 class WireMock {
   public:

@@ -5,7 +5,6 @@
 #include "arduino-mock/Arduino.h"
 #include "arduino-mock/Serial.h"
 #include "arduino-mock/serialHelper.h"
-Serial_ Serial;
 
 using ::testing::_;
 using ::testing::Return;

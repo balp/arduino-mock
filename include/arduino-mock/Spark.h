@@ -48,6 +48,7 @@ class Spark_ {
     void sleep(uint16_t wakeUpPin, uint16_t edgeTriggerMode, int seconds);
     void syncTime(); // Synchronize time with the Spark Cloud
 };
+extern Spark_ Spark;
 
 SparkMock* sparkMockInstance();
 void releaseSparkMock();

@@ -8,7 +8,6 @@
 #include "arduino-mock/Arduino.h"
 
 #include "arduino-mock/Spark.h"
-Spark_ Spark;
 
 using ::testing::StrCaseEq;
 

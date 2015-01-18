@@ -4,8 +4,6 @@
 
 #include "arduino-mock/serialHelper.h"
 
-Serial_ Serial;
-
 using ::testing::_;
 using ::testing::Return;
 using ::testing::Matcher;

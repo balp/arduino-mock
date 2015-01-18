@@ -29,6 +29,7 @@ class WiFi_ {
     char* subnetMask(); // Return Subnet mask of the network
     char* gatewayIP();  // Return the gateway IP address
 };
+extern WiFi_ WiFi;
 
 class WiFiMock {
   public:

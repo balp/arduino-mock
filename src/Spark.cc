@@ -72,3 +72,6 @@ void Spark_::sleep(uint16_t wakeUpPin, uint16_t edgeTriggerMode, int seconds) {
 void Spark_::syncTime() {
   gSparkMock->syncTime();
 }
+
+// Preinstantiate Objects
+Spark_ Spark;

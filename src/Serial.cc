@@ -112,3 +112,6 @@ uint8_t Serial_::available() {
 uint8_t Serial_::read() {
   return gSerialMock->read();
 }
+
+// Preinstantiate Objects
+Serial_ Serial;
