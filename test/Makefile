@@ -53,11 +53,15 @@ GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
 		$(GTEST_DIR)/include/gtest/internal/*.h
 
 # All Google Mock headers. Note that all Google Test headers are
-# included here too, as they are #included by Google Mock headers.
+# included here too, as they are included by Google Mock headers.
 # Usually you shouldn't change this definition.
 GMOCK_HEADERS = $(GMOCK_DIR)/include/gmock/*.h \
                 $(GMOCK_DIR)/include/gmock/internal/*.h \
                 $(GTEST_HEADERS)
+
+# Arduino Mock headers.
+# Usually you shouldn't change this definition.
+ARDUINO_MOCK_HEADERS = $(ARDUINO_MOCK_DIR)/include/arduino-mock/*.h
 
 # House-keeping build targets.
 
@@ -78,6 +82,8 @@ format :
 # Usually you shouldn't tweak such internal variables, indicated by a
 # trailing _.
 GTEST_SRCS_ = $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
+GMOCK_SRCS_ = $(GMOCK_DIR)/src/*.cc $(GMOCK_HEADERS)
+ARDUINO_MOCK_SRCS_ = $(ARDUINO_MOCK_DIR)/src/*.cc $(ARDUINO_MOCK_HEADERS)
 
 # For simplicity and to avoid depending on implementation details of
 # Google Mock and Google Test, the dependencies specified below are
@@ -103,43 +109,13 @@ gmock_main.a : gmock-all.o gtest-all.o gmock_main.o
 	$(AR) $(ARFLAGS) $@ $^
 
 # Builds Arduino mocks.
-arduino_mock_all.a : Arduino.o Serial.o serialHelper.o Spark.o EEPROM.o Wire.o WiFi.o
+ArduinoMockAll.o : $(ARDUINO_MOCK_SRCS_)
+	$(CXX) $(CPPFLAGS) -I$(ARDUINO_MOCK_DIR) $(CXXFLAGS) -c \
+		$(ARDUINO_MOCK_DIR)/src/ArduinoMockAll.cc
+
+arduino_mock_all.a : ArduinoMockAll.o
 	$(AR) $(ARFLAGS) $@ $^
 
-Arduino.o : $(ARDUINO_MOCK_DIR)/include/arduino-mock/Arduino.h \
-		$(ARDUINO_MOCK_DIR)/src/Arduino.cc
-	$(CXX) $(CPPFLAGS) -I$(ARDUINO_MOCK_DIR) $(CXXFLAGS) -c \
-		$(ARDUINO_MOCK_DIR)/src/Arduino.cc
-
-Serial.o : $(ARDUINO_MOCK_DIR)/include/arduino-mock/Serial.h \
-		$(ARDUINO_MOCK_DIR)/src/Serial.cc
-	$(CXX) $(CPPFLAGS) -I$(ARDUINO_MOCK_DIR) $(CXXFLAGS) -c \
-		$(ARDUINO_MOCK_DIR)/src/Serial.cc
-
-serialHelper.o : $(ARDUINO_MOCK_DIR)/include/arduino-mock/serialHelper.h \
-		$(ARDUINO_MOCK_DIR)/src/serialHelper.cc
-	$(CXX) $(CPPFLAGS) -I$(ARDUINO_MOCK_DIR) $(CXXFLAGS) -c \
-		$(ARDUINO_MOCK_DIR)/src/serialHelper.cc
-
-Spark.o : $(ARDUINO_MOCK_DIR)/include/arduino-mock/Spark.h \
-		$(ARDUINO_MOCK_DIR)/src/Spark.cc
-	$(CXX) $(CPPFLAGS) -I$(ARDUINO_MOCK_DIR) $(CXXFLAGS) -c \
-		$(ARDUINO_MOCK_DIR)/src/Spark.cc
-
-EEPROM.o: $(ARDUINO_MOCK_DIR)/include/arduino-mock/EEPROM.h \
-		$(ARDUINO_MOCK_DIR)/src/EEPROM.cc
-	$(CXX) $(CPPFLAGS) -I$(ARDUINO_MOCK_DIR) $(CXXFLAGS) -c \
-		$(ARDUINO_MOCK_DIR)/src/EEPROM.cc
-
-Wire.o: $(ARDUINO_MOCK_DIR)/include/arduino-mock/Wire.h \
-		$(ARDUINO_MOCK_DIR)/src/Wire.cc
-	$(CXX) $(CPPFLAGS) -I$(ARDUINO_MOCK_DIR) $(CXXFLAGS) -c \
-		$(ARDUINO_MOCK_DIR)/src/Wire.cc
-
-WiFi.o: $(ARDUINO_MOCK_DIR)/include/arduino-mock/WiFi.h \
-		$(ARDUINO_MOCK_DIR)/src/WiFi.cc
-	$(CXX) $(CPPFLAGS) -I$(ARDUINO_MOCK_DIR) $(CXXFLAGS) -c \
-		$(ARDUINO_MOCK_DIR)/src/WiFi.cc
 # Builds a test.  A test should link with either gtest.a or
 # gtest_main.a, depending on whether it defines its own main()
 # function.
