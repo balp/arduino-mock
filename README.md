@@ -1,5 +1,6 @@
 arduino-mock
 ============
+[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ikeyasu/arduino-mock)
 
 A GMock stub library for a mock of Arduino libraries.
 
