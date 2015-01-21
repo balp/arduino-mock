@@ -1,4 +1,4 @@
-arduino-mock
+arduino-mock[![Build Status](https://travis-ci.org/ikeyasu/arduino-mock.svg?branch=master)](https://travis-ci.org/ikeyasu/arduino-mock)
 ============
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ikeyasu/arduino-mock)
 
