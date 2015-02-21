@@ -74,6 +74,7 @@ void loop(void);
 #include <gmock/gmock.h>
 
 #define UNUSED(expr) do { (void)(expr); } while (0)
+#define F(x) (x)
 
 class ArduinoMock {
   public:
