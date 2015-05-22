@@ -18,4 +18,3 @@ TEST(delay, normal) {
   delay(1);
   releaseArduinoMock();
 }
-
