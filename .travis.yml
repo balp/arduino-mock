@@ -16,5 +16,5 @@ before_install:
  - bash .travis-tmp/cmake-3.2.2/cmake-3.2.2-Linux-x86_64.sh --exclude-subdir --prefix=.travis-tmp/cmake-3.2.2 --skip-license
  - export PATH=`pwd`/.travis-tmp/cmake-3.2.2/bin:$PATH
 script:
- - cmake -Dtest=ON && make && ctest -V
+ - pushd build && ./build.sh && popd
  - ./script/travis_format_checcker.sh
