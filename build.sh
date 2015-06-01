@@ -1,5 +1,7 @@
 #!/bin/sh
-cd build
-cmake -Dtest=ON ..
-make
-make test
+
+[ ! -d build ] && mkdir build
+cd build && \
+cmake  .. -Dtest=ON && \
+make VERBOSE=1 && \
+ctest -VV
