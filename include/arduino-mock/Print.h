@@ -18,7 +18,7 @@ class Print
   //   size_t printFloat(double, uint8_t);
   // protected:
   //   void setWriteError(int err = 1) { write_error = err; }
-  // public:
+  public:
   //   Print() : write_error(0) {}
   //
   //   int getWriteError() { return write_error; }
