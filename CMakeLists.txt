@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 2.8)
 set(CMAKE_CXX_FLAGS "-std=c++98")
+set (CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}")
+
 include(ExternalProject)
+include(external)
 
 project (arduino-mock)
 
@@ -20,6 +23,8 @@ ExternalProject_Get_Property(gtest binary_dir)
 set(GTEST_LIB_DIR ${binary_dir})
 message("GTEST_LIB_DIR: ${GTEST_LIB_DIR}")
 
+include_directories( arduino-mock ${GTEST_INCLUDE_DIR} )
+
 
 ExternalProject_Add(gmock
     URL https://googlemock.googlecode.com/files/gmock-1.7.0.zip
@@ -37,12 +42,9 @@ set(GMOCK_LIB_DIR ${binary_dir})
 message("GMOCK_LIB_DIR: ${GMOCK_LIB_DIR}")
 
 
-include_directories( arduino-mock
-  ${GTEST_INCLUDE_DIR}
-  ${GMOCK_INCLUDE_DIR}
-  include
-)
+include_directories( arduino-mock ${GMOCK_INCLUDE_DIR} )
 
+include_directories( arduino-mock include )
 #library setup
 add_library(arduino-mock STATIC "src/ArduinoMockAll.cc")
 
@@ -51,8 +53,6 @@ target_include_directories(arduino-mock
 )
 
 message("target_link_libraries:")
-message("\tGTEST_LIB_DIR: ${GTEST_LIB_DIR}/libgtest.a")
-message("\tGMOCK_LIB_DIR: ${GMOCK_LIB_DIR}/libgmock.a")
 
 target_link_libraries( arduino-mock
     ${GTEST_LIB_DIR}/libgtest.a
