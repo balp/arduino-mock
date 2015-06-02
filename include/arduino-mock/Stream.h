@@ -4,10 +4,11 @@
 #include <gmock/gmock.h>
 
 class Stream {
-  virtual int available() = 0;
-  virtual int read() = 0;
-  virtual int peek() = 0;
-  virtual void flush() = 0;
+  public:
+    virtual int available() = 0;
+    virtual int read() = 0;
+    virtual int peek() = 0;
+    virtual void flush() = 0;
 };
 
 class StreamMock : public Stream {
