@@ -5,7 +5,7 @@ file(GLOB SRCS *.cc)
 add_executable(arduinoMockTest ${SRCS})
 
 target_link_libraries(arduinoMockTest
-    arduino_mock
+    arduino-mock
     ${GTEST_LIBS_DIR}/libgtest.a
     ${GTEST_LIBS_DIR}/libgtest_main.a
     ${GMOCK_LIBS_DIR}/libgmock.a
@@ -13,4 +13,4 @@ target_link_libraries(arduinoMockTest
 )
 
 add_dependencies(arduinoMockTest gtest)
-add_test(arduino_mock_test arduinoMockTest)
+add_test(arduino-mock-test arduinoMockTest)
