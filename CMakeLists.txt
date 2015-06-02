@@ -48,3 +48,7 @@ export (
   TARGETS arduino-mock
   FILE ${CMAKE_BINARY_DIR}/arduino-mock-config.cmake
 )
+
+export (
+  PACKAGE arduino-mock
+)
