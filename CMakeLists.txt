@@ -7,6 +7,7 @@ add_subdirectory(lib/gmock)
 
 message ("building arduino-mock")
 include_directories(${GTEST_INCLUDE_DIRS} ${GMOCK_INCLUDE_DIRS} include)
+
 file(GLOB SRC
     "src/ArduinoMockAll.cc"
 )
