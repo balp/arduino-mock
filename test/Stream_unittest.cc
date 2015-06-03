@@ -2,8 +2,8 @@
 // This example code is in the public domain.
 
 #include "gtest/gtest.h"
-#include "arduino-mock/Arduino.h"
-#include "arduino-mock/Stream.h"
+#include "Arduino.h"
+#include "Stream.h"
 
 using ::testing::_;
 using ::testing::Return;

@@ -1,5 +1,5 @@
 
-#include "arduino-mock/Arduino.h"
+#include "Arduino.h"
 
 static ArduinoMock* arduinoMock = NULL;
 ArduinoMock* arduinoMockInstance() {
