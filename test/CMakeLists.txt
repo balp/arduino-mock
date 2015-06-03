@@ -1,3 +1,4 @@
+set(CMAKE_CXX_FLAGS "-std=c++11")
 message ("building tests for Arduino Mock")
 
 file(GLOB SRCS *.cc)
