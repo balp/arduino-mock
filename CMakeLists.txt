@@ -15,14 +15,9 @@ getExternalProject("gtest" "https://googletest.googlecode.com/files/gtest-1.7.0.
 getExternalProject("gmock" "https://googlemock.googlecode.com/files/gmock-1.7.0.zip")
 
 include_directories(arduino-mock include)
-#library setup
 
 target_include_directories(arduino-mock
     PUBLIC "include"
-)
-
-target_link_libraries( arduino-mock
-    ${CMAKE_THREAD_LIBS_INIT}
 )
 
 linkExternalProject(arduino-mock "gtest")

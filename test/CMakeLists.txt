@@ -12,5 +12,4 @@ target_link_libraries(arduino-mock-test
     ${GTEST_LIB_DIR}/libgtest_main.a
 )
 
-# add_dependencies(arduino-mock-test gtest)
 add_test(arduino-mock arduino-mock-test)
