@@ -17,4 +17,20 @@ macro (getExternalProject name url)
   ExternalProject_Get_Property(${name} binary_dir)
   set(${bigname}_LIB_DIR ${binary_dir})
 
+  message("\t include_directories(${CMAKE_PROJECT_NAME} ${${bigname}_INCLUDE_DIR})")
+  include_directories(${CMAKE_PROJECT_NAME} ${${bigname}_INCLUDE_DIR})
+
 endmacro(getExternalProject)
+
+macro (linkExternalProject name)
+  message("linkExternalProject(${name} ${url})")
+  string(TOUPPER ${name} bigname)
+  message("\t target_link_libraries(${CMAKE_PROJECT_NAME} ${${bigname}_LIB_DIR})")
+
+  target_link_libraries(${CMAKE_PROJECT_NAME}
+    ${${bigname}_LIB_DIR}/lib${name}.a
+  )
+
+  add_dependencies(${CMAKE_PROJECT_NAME} ${name})
+
+endmacro(linkExternalProject)

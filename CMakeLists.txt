@@ -3,52 +3,28 @@ set(CMAKE_CXX_FLAGS "-std=c++98")
 set (CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}")
 
 include(ExternalProject)
-include(get-external-project)
+include(external-project-utils)
 
 project (arduino-mock)
 
-getExternalProject("gtest" "https://googletest.googlecode.com/files/gtest-1.7.0.zip")
-message("GTEST_INCLUDE_DIR: ${GTEST_INCLUDE_DIR}")
-message("GTEST_LIB_DIR: ${GTEST_LIB_DIR}")
-
-include_directories(arduino-mock ${GTEST_INCLUDE_DIR} )
-
-
-ExternalProject_Add(gmock
-    URL https://googlemock.googlecode.com/files/gmock-1.7.0.zip
-    PREFIX ${CMAKE_CURRENT_BINARY_DIR}/gmock
-    UPDATE_COMMAND ""
-    INSTALL_COMMAND ""
-)
-
-ExternalProject_Get_Property(gmock source_dir)
-set(GMOCK_INCLUDE_DIR ${source_dir}/include)
-message("GMOCK_INCLUDE_DIR: ${GMOCK_INCLUDE_DIR}")
-
-ExternalProject_Get_Property(gmock binary_dir)
-set(GMOCK_LIB_DIR ${binary_dir})
-message("GMOCK_LIB_DIR: ${GMOCK_LIB_DIR}")
-
-
-include_directories( arduino-mock ${GMOCK_INCLUDE_DIR} )
-
-include_directories( arduino-mock include )
-#library setup
 add_library(arduino-mock STATIC "src/ArduinoMockAll.cc")
+
+getExternalProject("gtest" "https://googletest.googlecode.com/files/gtest-1.7.0.zip")
+getExternalProject("gmock" "https://googlemock.googlecode.com/files/gmock-1.7.0.zip")
+
+include_directories(arduino-mock include)
+#library setup
 
 target_include_directories(arduino-mock
     PUBLIC "include"
 )
 
-message("target_link_libraries:")
-
 target_link_libraries( arduino-mock
-    ${GTEST_LIB_DIR}/libgtest.a
-    ${GMOCK_LIB_DIR}/libgmock.a
     ${CMAKE_THREAD_LIBS_INIT}
 )
 
-add_dependencies(arduino-mock gtest gmock)
+linkExternalProject("gtest")
+linkExternalProject("gmock")
 
 set_target_properties( arduino-mock
   PROPERTIES
