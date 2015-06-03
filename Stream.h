@@ -1,9 +1,10 @@
 #ifndef STREAM_H
 #define STREAM_H
 
+#include "Print.h"
 #include <gmock/gmock.h>
 
-class Stream {
+class Stream : public Print {
   public:
     virtual int available() = 0;
     virtual int read() = 0;
@@ -29,6 +30,8 @@ class Stream {
 
     virtual size_t readBytes( char *buffer, size_t length) = 0;
     virtual size_t readBytes( uint8_t *buffer, size_t length) = 0;
+
+    virtual size_t write(const uint8_t *buffer, size_t size) = 0;
 
     // virtual size_t readBytesUntil( char terminator, char *buffer, size_t length);
     // virtual size_t readBytesUntil( char terminator, uint8_t *buffer, size_t length) { return readBytesUntil(terminator, (char *)buffer, length); }
@@ -67,6 +70,9 @@ class StreamMock : public Stream {
     //
     // virtual String readString();
     // virtual String readStringUntil(char terminator);
+
+    //Print functions
+    MOCK_METHOD2(write, size_t (const uint8_t*, size_t size));
 };
 
 #endif
