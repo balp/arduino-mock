@@ -15,9 +15,10 @@ add_library(arduino-mock STATIC "src/ArduinoMockAll.cc")
 getExternalProject("gtest" "https://googletest.googlecode.com/files/gtest-1.7.0.zip")
 getExternalProject("gmock" "https://googlemock.googlecode.com/files/gmock-1.7.0.zip")
 
-target_include_directories(arduino-mock
-    PUBLIC "include"
+include_directories( arduino-mock
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
 )
+set_target_properties(arduino-mock PROPERTIES ENABLE_EXPORTS true)
 
 linkExternalProject(arduino-mock "gtest")
 linkExternalProject(arduino-mock "gmock")
