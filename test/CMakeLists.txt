@@ -2,15 +2,15 @@ message ("building tests for Arduino Mock")
 
 file(GLOB SRCS *.cc)
 
-add_executable(arduinoMockTest ${SRCS})
+add_executable(arduino-mock-test ${SRCS})
 
-target_link_libraries(arduinoMockTest
+linkExternalProject(arduino-mock-test "gtest")
+linkExternalProject(arduino-mock-test "gmock")
+
+target_link_libraries(arduino-mock-test
     arduino-mock
-    ${GTEST_LIB_DIR}/libgtest.a
     ${GTEST_LIB_DIR}/libgtest_main.a
-    ${GMOCK_LIB_DIR}/libgmock.a
-    ${CMAKE_THREAD_LIBS_INIT}
 )
 
-add_dependencies(arduinoMockTest gtest)
-add_test(arduino-mock-test arduinoMockTest)
+# add_dependencies(arduino-mock-test gtest)
+add_test(arduino-mock arduino-mock-test)

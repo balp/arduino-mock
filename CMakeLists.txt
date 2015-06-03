@@ -25,8 +25,8 @@ target_link_libraries( arduino-mock
     ${CMAKE_THREAD_LIBS_INIT}
 )
 
-linkExternalProject("gtest")
-linkExternalProject("gmock")
+linkExternalProject(arduino-mock "gtest")
+linkExternalProject(arduino-mock "gmock")
 
 set_target_properties( arduino-mock
   PROPERTIES
