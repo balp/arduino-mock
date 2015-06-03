@@ -18,6 +18,7 @@ getExternalProject("gmock" "https://googlemock.googlecode.com/files/gmock-1.7.0.
 include_directories( arduino-mock
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
 )
+
 set_target_properties(arduino-mock PROPERTIES ENABLE_EXPORTS true)
 
 linkExternalProject(arduino-mock "gtest")
