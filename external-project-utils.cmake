@@ -25,6 +25,7 @@ endmacro(getExternalProject)
 macro (linkExternalProject name)
   message("linkExternalProject(${name} ${url})")
   string(TOUPPER ${name} bigname)
+
   message("\t target_link_libraries(${CMAKE_PROJECT_NAME} ${${bigname}_LIB_DIR})")
 
   target_link_libraries(${CMAKE_PROJECT_NAME}
