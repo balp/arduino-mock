@@ -10,7 +10,9 @@ include(external-project-utils)
 
 project (arduino-mock)
 
-add_library(arduino-mock STATIC "src/ArduinoMockAll.cc")
+file(GLOB HEADER_FILES *.h)
+
+add_library(arduino-mock STATIC "src/ArduinoMockAll.cc" ${HEADER_FILES})
 
 getExternalProject("gtest" "https://googletest.googlecode.com/files/gtest-1.7.0.zip")
 getExternalProject("gmock" "https://googlemock.googlecode.com/files/gmock-1.7.0.zip")
