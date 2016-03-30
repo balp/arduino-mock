@@ -7,7 +7,7 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
-extern "C"{
+extern "C" {
 #endif
 
 #define HIGH 0x1
@@ -17,7 +17,9 @@ extern "C"{
 #define OUTPUT 0x1
 #define INPUT_PULLUP 0x2
 
-#ifndef WIN32
+#ifdef WIN32
+#elif linux
+#else
 #define true 0x1
 #define false 0x0
 #endif
@@ -71,11 +73,15 @@ void loop(void);
 
 #include <gmock/gmock.h>
 
+#define UNUSED(expr) do { (void)(expr); } while (0)
+#define F(x) (x)
+
 class ArduinoMock {
-public:
+  public:
     MOCK_METHOD2(pinMode, void (uint8_t, uint8_t));
     MOCK_METHOD2(analogWrite, void (uint8_t, int));
     MOCK_METHOD2(digitalWrite, void (uint8_t, uint8_t));
+    MOCK_METHOD1(digitalRead, int (int));
     MOCK_METHOD1(analogRead, int (int));
     MOCK_METHOD1(delay, void (int));
     MOCK_METHOD0(millis, unsigned long ());
