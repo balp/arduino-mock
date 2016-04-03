@@ -14,8 +14,11 @@ file(GLOB HEADER_FILES *.h)
 
 add_library(arduino-mock STATIC "src/ArduinoMockAll.cc" ${HEADER_FILES})
 
-getExternalProject("gtest" "https://googletest.googlecode.com/files/gtest-1.7.0.zip")
-getExternalProject("gmock" "https://googlemock.googlecode.com/files/gmock-1.7.0.zip")
+option(EXTERNAL_GMOCK "Download GMock" OFF)
+if(EXTERNAL_GMOCK)
+    getExternalProject("gtest" "https://googletest.googlecode.com/files/gtest-1.7.0.zip")
+    getExternalProject("gmock" "https://googlemock.googlecode.com/files/gmock-1.7.0.zip")
+endif()
 
 include_directories( arduino-mock
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
