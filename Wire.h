@@ -21,7 +21,7 @@ class Wire_ {
     uint8_t requestFrom(uint8_t, uint8_t, uint8_t);
     uint8_t write(uint8_t);
     uint8_t write(char*);
-    uint8_t write(uint8_t, uint8_t);
+    uint8_t write(const uint8_t*, uint8_t);
     uint8_t available(void);
     uint8_t read(void);
     void onReceive(uint8_t*);
@@ -53,7 +53,7 @@ class WireMock {
     MOCK_METHOD3(requestFrom, uint8_t(uint8_t, uint8_t, uint8_t));
     MOCK_METHOD1(write, uint8_t(uint8_t));
     MOCK_METHOD1(write, uint8_t(char*));
-    MOCK_METHOD2(write, uint8_t(uint8_t, uint8_t));
+    MOCK_METHOD2(write, uint8_t(const uint8_t*, uint8_t));
     MOCK_METHOD0(available, uint8_t(void));
     MOCK_METHOD0(read, uint8_t(void));
     MOCK_METHOD1(onReceive, void(uint8_t*));

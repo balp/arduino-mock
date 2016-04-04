@@ -44,7 +44,7 @@ uint8_t Wire_::write(char* a) {
   return p_WireMock->write(a);
 }
 
-uint8_t Wire_::write(uint8_t a, uint8_t b) {
+uint8_t Wire_::write(const uint8_t* a, uint8_t b) {
   return p_WireMock->write(a, b);
 }
 
