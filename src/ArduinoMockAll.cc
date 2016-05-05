@@ -2,6 +2,7 @@
 
 #include "Arduino.cc"
 #include "EEPROM.cc"
+#include "Redbot.cc"
 #include "Serial.cc"
 #include "serialHelper.cc"
 #include "Spark.cc"
