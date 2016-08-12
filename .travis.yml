@@ -12,7 +12,7 @@ before_install:
  - pushd .travis-tmp/astyle-2.03/astyle/build/gcc && make && export PATH=`pwd`/bin:$PATH && popd
  # cmake-3.2.2
  - mkdir -p .travis-tmp/cmake-3.2.2
- - wget -P .travis-tmp/cmake-3.2.2/ http://www.cmake.org/files/v3.2/cmake-3.2.2-Linux-x86_64.sh
+ - wget --no-check-certificate -P .travis-tmp/cmake-3.2.2/ https://cmake.org/files/v3.2/cmake-3.2.2-Linux-x86_64.sh
  - bash .travis-tmp/cmake-3.2.2/cmake-3.2.2-Linux-x86_64.sh --exclude-subdir --prefix=.travis-tmp/cmake-3.2.2 --skip-license
  - export PATH=`pwd`/.travis-tmp/cmake-3.2.2/bin:$PATH
 script:
