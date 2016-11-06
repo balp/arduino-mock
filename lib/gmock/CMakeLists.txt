@@ -3,7 +3,7 @@ project(gmock_builder C CXX)
 include(ExternalProject)
 
 ExternalProject_Add(gmock
-    URL https://googlemock.googlecode.com/files/gmock-1.7.0.zip
+    URL https://github.com/paulsapps/gmock-1.7.0/archive/master.zip
     PREFIX ${CMAKE_CURRENT_BINARY_DIR}/gmock
     INSTALL_COMMAND ""
 )
