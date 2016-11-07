@@ -28,7 +28,7 @@ void SPI_::notUsingInterrupt(uint8_t a) {
 }
 
 
-uint8_t SPI_::beginTransaction(SPISettings a) {
+void SPI_::beginTransaction(SPISettings a) {
   return p_SPIMock->beginTransaction(a);
 }
 

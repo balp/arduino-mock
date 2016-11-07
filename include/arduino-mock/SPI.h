@@ -8,15 +8,22 @@
 
 class SPISettings
 {
+	uint32_t _a;
+	uint8_t _b;
+	uint8_t _c;
 	public:
-		SPISettings(uint32_t , uint8_t , uint8_t );
-		SPISettings()
+		SPISettings(uint32_t a, uint8_t b, uint8_t c):_a(a),_b(b),_c(c){}
+		SPISettings();
+	bool operator==(const SPISettings& rhs)const
+	{
+		return _a == rhs._a && _b == rhs._b && _c == rhs._c;
+	}
 };
 
 class SPI_ {
   public:
     void begin();
-	void usingInterrupt(uint8_t )
+	void usingInterrupt(uint8_t );
 	void notUsingInterrupt(uint8_t );
 	void beginTransaction(SPISettings );
 	uint8_t transfer(uint8_t );

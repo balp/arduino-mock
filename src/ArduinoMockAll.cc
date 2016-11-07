@@ -7,4 +7,5 @@
 #include "Spark.cc"
 #include "WiFi.cc"
 #include "Wire.cc"
+#include "SPI.cc"
 

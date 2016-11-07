@@ -2,8 +2,9 @@
 #include "arduino-mock/SPI.h"
 #include "arduino-mock/Arduino.h"
 
+
 using ::testing::Return;
-TEST(SPI, access) {
+TEST(SPITest, access) {
   uint8_t value1 = 10;
   uint8_t value2 = 12;
   uint16_t value = 3;
@@ -11,8 +12,8 @@ TEST(SPI, access) {
   uint8_t* callback_func = NULL;
   void* voidTest = NULL;
   
-  SPISettings settings;
-  WireMock* mock = SPIMockInstance();
+  SPISettings settings(1,2,3);
+  SPIMock* mock = SPIMockInstance();
   
   EXPECT_CALL(*mock, begin());
   EXPECT_CALL(*mock, usingInterrupt(value1));
@@ -30,20 +31,20 @@ TEST(SPI, access) {
   EXPECT_CALL(*mock, detachInterrupt());
   
   
-  SPI.begin());
+  SPI.begin();
   SPI.usingInterrupt(value1);
   SPI.notUsingInterrupt(value1);
   SPI.beginTransaction(settings);
   SPI.transfer(value1);
   SPI.transfer16(value);
   SPI.transfer(voidTest,value1);
-  SPI.endTransaction());
-  SPI.end());
+  SPI.endTransaction();
+  SPI.end();
   SPI.setBitOrder(value1);
   SPI.setDataMode(value1);
   SPI.setClockDivider(value1);
-  SPI.attachInterrupt());
-  SPI.detachInterrupt());
+  SPI.attachInterrupt();
+  SPI.detachInterrupt();
   
   releaseSPIMock();
 }
