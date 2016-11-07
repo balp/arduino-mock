@@ -11,17 +11,17 @@ TEST(SPITest, access) {
   char text[] = "Mock test";
   uint8_t* callback_func = NULL;
   void* voidTest = NULL;
-  
-  SPISettings settings(1,2,3);
+
+  SPISettings settings(1, 2, 3);
   SPIMock* mock = SPIMockInstance();
-  
+
   EXPECT_CALL(*mock, begin());
   EXPECT_CALL(*mock, usingInterrupt(value1));
   EXPECT_CALL(*mock, notUsingInterrupt(value1));
   EXPECT_CALL(*mock, beginTransaction(settings));
   EXPECT_CALL(*mock, transfer(value1));
   EXPECT_CALL(*mock, transfer16(value));
-  EXPECT_CALL(*mock, transfer(voidTest,value1));
+  EXPECT_CALL(*mock, transfer(voidTest, value1));
   EXPECT_CALL(*mock, endTransaction());
   EXPECT_CALL(*mock, end());
   EXPECT_CALL(*mock, setBitOrder(value1));
@@ -29,15 +29,15 @@ TEST(SPITest, access) {
   EXPECT_CALL(*mock, setClockDivider(value1));
   EXPECT_CALL(*mock, attachInterrupt());
   EXPECT_CALL(*mock, detachInterrupt());
-  
-  
+
+
   SPI.begin();
   SPI.usingInterrupt(value1);
   SPI.notUsingInterrupt(value1);
   SPI.beginTransaction(settings);
   SPI.transfer(value1);
   SPI.transfer16(value);
-  SPI.transfer(voidTest,value1);
+  SPI.transfer(voidTest, value1);
   SPI.endTransaction();
   SPI.end();
   SPI.setBitOrder(value1);
@@ -45,6 +45,6 @@ TEST(SPITest, access) {
   SPI.setClockDivider(value1);
   SPI.attachInterrupt();
   SPI.detachInterrupt();
-  
+
   releaseSPIMock();
 }
