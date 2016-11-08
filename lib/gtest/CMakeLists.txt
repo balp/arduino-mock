@@ -3,7 +3,7 @@ project(gtest_builder C CXX)
 include(ExternalProject)
 
 ExternalProject_Add(gtest
-    URL https://googletest.googlecode.com/files/gtest-1.7.0.zip
+    URL https://github.com/google/googletest/archive/release-1.7.0.zip
     PREFIX ${CMAKE_CURRENT_BINARY_DIR}/gtest
     INSTALL_COMMAND ""
 )
