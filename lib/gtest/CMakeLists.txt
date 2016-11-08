@@ -3,7 +3,7 @@ project(gtest_builder C CXX)
 include(ExternalProject)
 
 ExternalProject_Add(gtest
-    URL http://pkgs.fedoraproject.org/repo/pkgs/gtest/gtest-1.7.0.zip/2d6ec8ccdf5c46b05ba54a9fd1d130d7/gtest-1.7.0.zip
+    URL https://github.com/google/googletest/archive/release-1.7.0.zip
     PREFIX ${CMAKE_CURRENT_BINARY_DIR}/gtest
     INSTALL_COMMAND ""
 )
