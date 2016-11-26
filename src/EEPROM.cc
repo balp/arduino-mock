@@ -11,6 +11,7 @@ EEPROMMock* EEPROMMockInstance() {
 }
 
 void releaseEEPROMMock() {
+  assert (p_EEPROMMock != NULL);
   if (p_EEPROMMock) {
     delete p_EEPROMMock;
     p_EEPROMMock = NULL;
@@ -18,10 +19,12 @@ void releaseEEPROMMock() {
 }
 
 uint8_t EEPROM_::read(int a) {
+  assert (p_EEPROMMock != NULL);
   return p_EEPROMMock->read(a);
 }
 
 void EEPROM_::write(int a, uint8_t b) {
+  assert (p_EEPROMMock != NULL);
   p_EEPROMMock->write(a, b);
 }
 
