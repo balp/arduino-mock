@@ -9,3 +9,4 @@
 #include "Wire.cc"
 #include "SPI.cc"
 
+#include "IRremote.cc
