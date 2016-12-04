@@ -1,6 +1,11 @@
 /**
  * Arduino IRremote mock
+ * Used to mock out IRremote.h, an Arduino infrared remote library.
+ * For info on IRremote, see Ken Shirriff's blog article:
+ *   http://www.righto.com/2009/08/multi-protocol-infrared-remote-library.html
+ *   Note that Ken's latest code is now at https://github.com/shirriff/Arduino-IRremote
  */
+
 #ifndef IRremote_h
 #define IRremote_h
 
