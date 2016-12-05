@@ -51,6 +51,13 @@ class SerialMock {
 };
 
 class Serial_ {
+
+  private:
+    static bool printToCout;
+
+  public:
+    static void setPrintToCout(bool flag);
+
   public:
     static size_t print(const char[]);
     static size_t print(char);
