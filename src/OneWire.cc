@@ -21,9 +21,10 @@ void releaseOneWireMock() {
 
 bool OneWire::search( uint8_t* buf ) {
     assert( gOneWireMock != NULL );
-    return gOneWireMock->search(buf);
+    return gOneWireMock->search( buf );
 }
 
 void OneWire::reset_search( void ) {
-
+    assert( gOneWireMock != NULL );
+    gOneWireMock->reset_search( );
 }
