@@ -59,35 +59,35 @@ class Serial_ {
     static void setPrintToCout(bool flag);
 
   public:
-    static size_t print(const char[]);
-    static size_t print(char);
-    static size_t print(unsigned char, int = DEC);
-    static size_t print(int, int = DEC);
-    static size_t print(unsigned int, int = DEC);
-    static size_t print(long, int = DEC);
-    static size_t print(unsigned long, int = DEC);
-    static size_t print(double, int = 2);
+    virtual size_t print(const char[]);
+    virtual size_t print(char);
+    virtual size_t print(unsigned char, int = DEC);
+    virtual size_t print(int, int = DEC);
+    virtual size_t print(unsigned int, int = DEC);
+    virtual size_t print(long, int = DEC);
+    virtual size_t print(unsigned long, int = DEC);
+    virtual size_t print(double, int = 2);
 
-    static size_t println(const char[]);
-    static size_t println(char);
-    static size_t println(unsigned char, int = DEC);
-    static size_t println(int, int = DEC);
-    static size_t println(unsigned int, int = DEC);
-    static size_t println(long, int = DEC);
-    static size_t println(unsigned long, int = DEC);
-    static size_t println(double, int = 2);
-    static size_t println(void);
+    virtual size_t println(const char[]);
+    virtual size_t println(char);
+    virtual size_t println(unsigned char, int = DEC);
+    virtual size_t println(int, int = DEC);
+    virtual size_t println(unsigned int, int = DEC);
+    virtual size_t println(long, int = DEC);
+    virtual size_t println(unsigned long, int = DEC);
+    virtual size_t println(double, int = 2);
+    virtual size_t println(void);
 
-    size_t write(uint8_t);
-    size_t write(const char *str);
-    size_t write(const uint8_t *buffer, size_t size);
+    virtual size_t write(uint8_t);
+    virtual size_t write(const char *str);
+    virtual size_t write(const uint8_t *buffer, size_t size);
 
-    uint8_t begin(uint32_t);
+    virtual uint8_t begin(uint32_t);
 
-    uint8_t available();
-    uint8_t read();
+    virtual uint8_t available();
+    virtual uint8_t read();
 
-    static void flush();
+    virtual void flush();
 
     /*
     TODO: Not implemented yet.
