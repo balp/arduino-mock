@@ -9,5 +9,6 @@
 #include "WiFi.cc"
 #include "Wire.cc"
 #include "SPI.cc"
+#include "OneWire.cc"
 
 #include "IRremote.cc"
