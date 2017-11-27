@@ -5,6 +5,8 @@
 #define SOFTWARE_SERIAL_H
 
 #include <gmock/gmock.h>
+using ::testing::_;
+using ::testing::Invoke;
 
 #include "Serial.h"
 
@@ -31,6 +33,10 @@ class SoftwareSerial : public Serial_ {
 
 class SoftwareSerialMock : public SoftwareSerial {
   public:
+
+    /**************************************************************************/
+    /*   Standard GoogleMock methods                                          */
+    /**************************************************************************/
 
     //HardwareSerial methods (copied from SerialMock)
     MOCK_METHOD1(write, size_t(uint8_t));
@@ -61,6 +67,61 @@ class SoftwareSerialMock : public SoftwareSerial {
     MOCK_METHOD0(restore_listener, void());
     MOCK_METHOD1(at, uint8_t(const uint8_t index));
     uint8_t operator [] (const uint8_t index) override { return at(index); }
+
+
+    /**************************************************************************/
+    /*   Custom functionality to mock SoftwareSerial RX buffer                */
+    /*   -----------------------------------------------------                */
+    /*                                                                        */
+    /* The mock implements an internal RX buffer, where the user can pre-load */
+    /*  the data that the mock will serve on subsequent calls to the buffer   */
+    /*  related methods: available, read and operator []                      */
+    /*                                                                        */
+    /* Usage:                                                                 */
+    /*  Call mock_buffer_load to load the data into the RX buffer before the  */
+    /*   code under test will make use the related methods. Such methods will */
+    /*   then correct behave and return expected values.                      */
+    /*                                                                        */
+    /* Limitations:                                                           */
+    /*  - Buffer size is fixed, see private const buffer_size                 */
+    /*  - It is not a ringbuffer: subsequent calls to mock_buffer_load will   */
+    /*    override contents of the buffer.                                    */
+    /**************************************************************************/
+
+    /**
+      \brief Load user specified buffer into SoftwareSerial RX buffer (mock)
+      \param buffer Buffer of any length to copy the data from
+      \param len Length of the buffer
+      \param ignore_calls Flag to set the mock to expect and ignore all calls on
+             methods related to the buffer (available, read and operator [])
+    */
+    void mock_buffer_load(uint8_t buffer[], const uint8_t len, bool ignore_calls = true);
+    void mock_buffer_load(char buffer[], const uint8_t len, bool ignore_calls = true);
+
+    /**
+      \brief Constructor. Sets default mock actions for available, read and operator []
+    */
+    SoftwareSerialMock() {
+        ON_CALL(*this, available())
+            .WillByDefault(Invoke(this, SoftwareSerialMock::mock_buffer_available));
+        ON_CALL(*this, read())
+            .WillByDefault(Invoke(this, SoftwareSerialMock::mock_buffer_read));
+        ON_CALL(*this, at(_))
+            .WillByDefault(Invoke(this, SoftwareSerialMock::mock_buffer_at));
+    }
+
+    /**
+      \brief Overloaded methods for available, read and operator []
+    */
+    uint8_t mock_buffer_available();
+    uint8_t mock_buffer_read();
+    uint8_t mock_buffer_at(const uint8_t index);
+
+  private:
+    static const uint8_t buffer_size = 128;
+    uint8_t buffer[buffer_size] = {0};
+    uint8_t buffer_head = 0;
+    uint8_t buffer_tail = 0;
 };
 
 #endif // SOFTWARE_SERIAL_H
