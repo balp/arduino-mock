@@ -103,11 +103,11 @@ class SoftwareSerialMock : public SoftwareSerial {
     */
     SoftwareSerialMock() {
         ON_CALL(*this, available())
-            .WillByDefault(Invoke(this, SoftwareSerialMock::mock_buffer_available));
+            .WillByDefault(Invoke(this, &SoftwareSerialMock::mock_buffer_available));
         ON_CALL(*this, read())
-            .WillByDefault(Invoke(this, SoftwareSerialMock::mock_buffer_read));
+            .WillByDefault(Invoke(this, &SoftwareSerialMock::mock_buffer_read));
         ON_CALL(*this, at(_))
-            .WillByDefault(Invoke(this, SoftwareSerialMock::mock_buffer_at));
+            .WillByDefault(Invoke(this, &SoftwareSerialMock::mock_buffer_at));
     }
 
     /**
