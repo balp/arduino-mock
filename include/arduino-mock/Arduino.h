@@ -7,6 +7,8 @@
 #include <stdint.h>
 #include "AvrDefines.h"
 
+#include "Serial.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
