@@ -8,4 +8,7 @@
 #define PROGMEM
 #define pgm_read_dword_near *
 
+/* From avr/wdt.h.h */
+#define wdt_reset()
+
 #endif // AVR_DEFINES_H

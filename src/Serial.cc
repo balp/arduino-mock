@@ -207,7 +207,7 @@ uint8_t Serial_::begin(uint32_t port) {
 
 void Serial_::flush() {
   assert (gSerialMock != NULL);
-  return gSerialMock->flush();
+  gSerialMock->flush();
 }
 
 uint8_t Serial_::available() {
