@@ -77,6 +77,7 @@ void loop(void);
 
 #define UNUSED(expr) do { (void)(expr); } while (0)
 #define F(x) (x)
+#define __FlashStringHelper char
 
 class ArduinoMock {
   private:
