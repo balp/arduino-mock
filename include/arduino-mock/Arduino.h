@@ -5,7 +5,6 @@
 #define ARDUINO_H
 
 #include <stdint.h>
-#include "AvrDefines.h"
 
 #include "Serial.h"
 
