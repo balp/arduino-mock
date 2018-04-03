@@ -31,6 +31,7 @@ class SoftwareSerial : public Serial_ {
 
     //Arduino's SoftwareSerial methods not present in HardwareSerial
     virtual bool listen(){ return true; }
+    virtual void end(){}
     virtual bool isListening(){ return true; }
     virtual bool stopListening(){ return true; }
     virtual bool overflow(){ return true; }
@@ -109,6 +110,7 @@ class SoftwareSerialMock : public SoftwareSerial {
     MOCK_METHOD0(available, uint8_t());
     MOCK_METHOD0(read, uint8_t());
     MOCK_METHOD0(flush, void());
+    MOCK_METHOD0(end, void());
 
     //SoftwareSerial methods
     MOCK_METHOD0(listen, bool());
