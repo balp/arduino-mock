@@ -66,6 +66,9 @@ uint8_t shiftIn(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder);
 void attachInterrupt(uint8_t, void (*)(void), int mode);
 void detachInterrupt(uint8_t);
 
+void interrupts(void);
+void noInterrupts(void);
+
 void setup(void);
 void loop(void);
 
