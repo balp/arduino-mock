@@ -89,6 +89,9 @@ class Serial_ {
 
     virtual void flush();
 
+    //WiTraC extensions for Serial_
+    virtual uint8_t operator [] (const uint8_t index) { return 0; }
+
     /*
     TODO: Not implemented yet.
     int getWriteError();
