@@ -220,6 +220,11 @@ uint8_t Serial_::read() {
   return gSerialMock->read();
 }
 
+uint8_t Serial_::operator [] (const uint8_t index) {
+  assert (gSerialMock != NULL);
+  return (*gSerialMock)[index];
+}
+
 // Preinstantiate Objects
 Serial_ Serial;
 
