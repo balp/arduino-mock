@@ -38,7 +38,6 @@ class SoftwareSerial : public Serial_ {
 
     //WiTraC extensions for SoftwareSerial
     virtual void restore_listener(){}
-    virtual uint8_t operator [] (const uint8_t index)/*const*/ { return 0; }
 
   protected:
     SoftwareSerial(){}

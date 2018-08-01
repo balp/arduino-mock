@@ -24,4 +24,3 @@ uint8_t SoftwareSerialFake::at(const uint8_t index) {
 
     return buffer[buffer_head + index];
 }
-
