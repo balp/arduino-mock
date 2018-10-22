@@ -64,7 +64,7 @@ class SoftwareSerialFake : public SoftwareSerial {
       \param buffer User buffer to copy the data from
       \param len Length of the user buffer
     */
-    void buffer_load(uint8_t buffer_0[], const uint8_t len);
+    void buffer_load(const uint8_t buffer_0[], const uint8_t len);
 
     /**
       \brief Fake methods to operate with the RX buffer
@@ -127,7 +127,7 @@ class SoftwareSerialMock : public SoftwareSerial {
       \param ignore_calls Flag to set the mock to expect and ignore all calls on
              methods related to the buffer (available, read and operator [])
     */
-    void mock_buffer_load(uint8_t buffer[], const uint8_t len, bool ignore_calls = true) {
+    void mock_buffer_load(const uint8_t buffer[], const uint8_t len, bool ignore_calls = true) {
         fake_.buffer_load(buffer, len);
         if (ignore_calls) {
             EXPECT_CALL(*this, available())
@@ -138,8 +138,8 @@ class SoftwareSerialMock : public SoftwareSerial {
                 .WillRepeatedly(DoDefault());
         }
     }
-    void mock_buffer_load(char buffer[], const uint8_t len, bool ignore_calls = true) {
-        mock_buffer_load((uint8_t*)buffer, len, ignore_calls);
+    void mock_buffer_load(const char buffer[], const uint8_t len, bool ignore_calls = true) {
+        mock_buffer_load((const uint8_t*)buffer, len, ignore_calls);
     }
 
     /**
