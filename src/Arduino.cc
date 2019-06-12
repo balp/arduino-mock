@@ -1,6 +1,6 @@
 #include "arduino-mock/Arduino.h"
 #include <ctime>
-#define SECS_YR_2000  ((time_t)(946684800UL)) // the time at the start of y2k
+ #define SECS_YR_2000  ((time_t)(946684800UL)) // the time at the start of y2k
 
 static ArduinoMock* arduinoMock = NULL;
 ArduinoMock* arduinoMockInstance() {
@@ -19,6 +19,8 @@ void releaseArduinoMock() {
 
 ArduinoMock::ArduinoMock() {
   currentMillis = 0;
+  const time_t sysTime = time(0) - SECS_YR_2000;
+  setMillisRaw(sysTime*1000);
 }
 
 void pinMode(uint8_t a, uint8_t b) {
