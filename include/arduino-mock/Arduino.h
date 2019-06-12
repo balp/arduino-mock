@@ -60,7 +60,7 @@ void analogWrite(uint8_t, int);
 time_t millis(void);
 time_t micros(void);
 void delay(time_t);
-void delayMicroseconds(unsigned int us);
+void delayMicroseconds(time_t us);
 time_t pulseIn(uint8_t pin, uint8_t state, time_t timeout);
 
 void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val);
@@ -111,10 +111,10 @@ class ArduinoMock {
     void addMillisRaw (time_t milliseconds) {
       currentMillis += milliseconds;
     };
-    void addMillisSecs(unsigned long seconds) {
+    void addMillisSecs(time_t seconds) {
       addMillisRaw(seconds *      1000);
     };
-    void addMillisMins(unsigned long minutes) {
+    void addMillisMins(time_t minutes) {
       addMillisRaw(minutes *   60 * 1000);
     };
     void addMillisHrs (float         hours)   {
@@ -127,7 +127,7 @@ class ArduinoMock {
     MOCK_METHOD1(digitalRead, int (int));
     MOCK_METHOD1(analogRead, int (int));
     MOCK_METHOD1(delay, void (int));
-    MOCK_METHOD0(millis, unsigned long ());
+    MOCK_METHOD0(millis, time_t ());
 };
 ArduinoMock* arduinoMockInstance();
 void releaseArduinoMock();
