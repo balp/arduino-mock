@@ -57,11 +57,11 @@ int analogRead(uint8_t);
 void analogReference(uint8_t mode);
 void analogWrite(uint8_t, int);
 
-unsigned long millis(void);
-unsigned long micros(void);
-void delay(unsigned long);
+time_t millis(void);
+time_t micros(void);
+void delay(time_t);
 void delayMicroseconds(unsigned int us);
-unsigned long pulseIn(uint8_t pin, uint8_t state, unsigned long timeout);
+time_t pulseIn(uint8_t pin, uint8_t state, time_t timeout);
 
 void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val);
 uint8_t shiftIn(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder);
@@ -86,29 +86,29 @@ void loop(void);
 
 class ArduinoMock {
   private:
-    unsigned long  currentMillis;
+    time_t currentMillis;
 
   public:
     ArduinoMock();
 
-    unsigned long getMillis() {
+    time_t getMillis() {
       return currentMillis;
     };
 
-    void setMillisRaw (unsigned long milliseconds) {
+    void setMillisRaw (time_t milliseconds) {
       currentMillis = milliseconds;
     };
-    void setMillisSecs(unsigned long seconds) {
+    void setMillisSecs(time_t seconds) {
       setMillisRaw(seconds *      1000);
     };
-    void setMillisMins(unsigned long minutes) {
+    void setMillisMins(time_t minutes) {
       setMillisRaw(minutes *   60 * 1000);
     };
     void setMillisHrs (float         hours)   {
       setMillisRaw(hours  * 60 * 60 * 1000);
     };
 
-    void addMillisRaw (unsigned long milliseconds) {
+    void addMillisRaw (time_t milliseconds) {
       currentMillis += milliseconds;
     };
     void addMillisSecs(unsigned long seconds) {

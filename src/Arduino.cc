@@ -1,4 +1,6 @@
 #include "arduino-mock/Arduino.h"
+#include <ctime>
+#include <time_util.h>
 
 static ArduinoMock* arduinoMock = NULL;
 ArduinoMock* arduinoMockInstance() {
@@ -47,16 +49,18 @@ void analogWrite(uint8_t a, int b) {
   arduinoMock->analogWrite(a, b);
 }
 
-unsigned long millis(void) {
+time_t millis(void) {
   assert (arduinoMock != NULL);
+  const time_t sysTime = time(0) - SECS_YR_2000;
+  arduinoMock->setMillisRaw(sysTime*1000);
   arduinoMock->millis();
   return arduinoMock->getMillis();
 }
 
-unsigned long micros(void) {
+time_t micros(void) {
   return 0;
 }
-void delay(unsigned long a) {
+void delay(time_t a) {
   assert (arduinoMock != NULL);
   arduinoMock->delay(a);
 }
@@ -64,7 +68,7 @@ void delayMicroseconds(unsigned int us) {
   UNUSED(us);
 }
 
-unsigned long pulseIn(uint8_t pin, uint8_t state, unsigned long timeout) {
+time_t pulseIn(uint8_t pin, uint8_t state, time_t timeout) {
   UNUSED(pin);
   UNUSED(state);
   UNUSED(timeout);
