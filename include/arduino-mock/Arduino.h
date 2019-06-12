@@ -96,7 +96,7 @@ class ArduinoMock {
     };
 
     void setMillisRaw (time_t milliseconds) {
-      currentMillis = milliseconds;
+      currentMillis = (milliseconds & UINT32_MAX);
     };
     void setMillisSecs(time_t seconds) {
       setMillisRaw(seconds *      1000);
@@ -110,6 +110,7 @@ class ArduinoMock {
 
     void addMillisRaw (time_t milliseconds) {
       currentMillis += milliseconds;
+      currentMillis &= UINT32_MAX;
     };
     void addMillisSecs(time_t seconds) {
       addMillisRaw(seconds *      1000);
