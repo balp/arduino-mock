@@ -26,8 +26,8 @@ using ::testing::DoDefault;
 class SoftwareSerial : public Serial_ {
 
   public:
-    SoftwareSerial( uint8_t receivePin, uint8_t transmitPin, bool inverse_logic = false ){}
-    virtual ~SoftwareSerial(){}
+    SoftwareSerial( uint8_t receivePin, uint8_t transmitPin, bool inverse_logic = false ){};
+    ~SoftwareSerial(){};
 
     //Arduino's SoftwareSerial methods not present in HardwareSerial
     virtual bool listen(){ return true; }
