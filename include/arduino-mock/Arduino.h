@@ -45,6 +45,15 @@ extern "C" {
 #define NOT_AN_INTERRUPT -1
 #define digitalPinToInterrupt(p)  ((p) == 2 ? 0 : ((p) == 3 ? 1 : NOT_AN_INTERRUPT))
 
+#define A0
+#define A1
+#define A2
+#define A3
+#define A4
+#define A5
+#define A6
+#define A7
+
 typedef uint8_t boolean;
 typedef uint8_t byte;
 
