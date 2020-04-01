@@ -1,4 +1,4 @@
-#include "OneWire.h"
+#include "arduino-mock/OneWire.h"
 
 static OneWireMock* gOneWireMock = NULL;
 

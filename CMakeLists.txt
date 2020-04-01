@@ -1,42 +1,61 @@
-cmake_minimum_required (VERSION 2.8.8)
-project (arduino_mock)
+cmake_minimum_required(VERSION 3.14)
+if (NOT DEFINED PROJECT_NAME)
+    set(NOT_SUBPROJECT ON)
+endif ()
+
+project(arduino_mock)
 
 find_package(Threads REQUIRED)
-add_subdirectory(lib/gtest)
-add_subdirectory(lib/gmock)
 
-message ("building arduino_mock")
-message("Gtest include: ${GTEST_INCLUDE_DIRS}")
-message("Gmock include: ${GMOCK_INCLUDE_DIRS}")
-include_directories(${GTEST_INCLUDE_DIRS} ${GMOCK_INCLUDE_DIRS} include)
-file(GLOB SRC
-    "src/ArduinoMockAll.cc"
-)
+# If we are a stand alone project not included with add_subdirectory() and
+# googletest, e.g. googlemock is not provided make sure to download it.
+if (NOT_SUBPROJECT)
+    if (NOT TARGET gmock_main)
+        include(FetchContent)
 
-add_library(arduino_mock STATIC ${SRC})
+        FetchContent_Declare(googletest
+                GIT_REPOSITORY https://github.com/google/googletest.git
+                GIT_TAG release-1.10.0)
+        FetchContent_MakeAvailable(googletest)
+    endif ()
+endif ()
 
+add_library(arduino_mock STATIC
+        src/Arduino.cc
+        src/EEPROM.cc
+        src/OneWire.cc
+        src/Serial.cc
+        src/Spark.cc
+        src/Wire.cc
+        src/IRremote.cc
+        src/SPI.cc
+        src/SoftwareSerial.cc
+        src/WiFi.cc
+        src/serialHelper.cc
+        )
 target_include_directories(arduino_mock
-    PUBLIC "include"
-)
-
+        PUBLIC "include"
+        )
 target_link_libraries(arduino_mock
-    ${GTEST_LIBS_DIR}/libgtest.a
-    ${GMOCK_LIBS_DIR}/libgmock.a
-    ${CMAKE_THREAD_LIBS_INIT}
-)
+        gmock
+        gtest
+        ${CMAKE_THREAD_LIBS_INIT}
+        )
+target_compile_features(arduino_mock PUBLIC cxx_std_11)
+set_target_properties(arduino_mock PROPERTIES CXX_EXTENSIONS OFF)
 
-set_target_properties( arduino_mock
-  PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/dist/lib"
-    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/dist/lib"
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/dist/bin"
-)
+set_target_properties(arduino_mock
+        PROPERTIES
+        ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/dist/lib"
+        LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/dist/lib"
+        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/dist/bin"
+        )
 
 add_dependencies(arduino_mock gtest gmock)
 
 option(test "Build all tests." OFF)
 
 if (test)
-  enable_testing()
-  add_subdirectory(test)
-endif()
+    enable_testing()
+    add_subdirectory(test)
+endif ()
