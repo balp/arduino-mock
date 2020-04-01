@@ -34,7 +34,9 @@ add_library(arduino_mock STATIC
         src/serialHelper.cc
         )
 target_include_directories(arduino_mock
-        PUBLIC "include"
+        PRIVATE "include"
+        PUBLIC "include/arduino-mock"
+        INTERFACE "include/arduino-mock"
         )
 target_link_libraries(arduino_mock
         gmock
