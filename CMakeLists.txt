@@ -25,15 +25,38 @@ endif ()
 add_library(arduino_mock STATIC
         src/Arduino.cc
         src/EEPROM.cc
+        src/IRremote.cc
         src/OneWire.cc
         src/Serial.cc
-        src/Spark.cc
-        src/Wire.cc
-        src/IRremote.cc
-        src/SPI.cc
         src/SoftwareSerial.cc
+        src/Spark.cc
+        src/SPI.cc
         src/WiFi.cc
+        src/Wire.cc
+        src/WString.cpp
+        src/dtostrf.c
+        src/itoa.c
         src/serialHelper.cc
+        include/Arduino.h
+        include/EEPROM.h
+        include/IRremote.h
+        include/Print.h
+        include/RedBot.h
+        include/Serial.h
+        include/Spark.h
+        include/WString.h
+        include/Wire.h
+        include/Client.h
+        include/IPAddress.h
+        include/OneWire.h
+        include/Printable.h
+        include/SPI.h
+        include/SoftwareSerial.h
+        include/Stream.h
+        include/WiFi.h
+        include/dtostrf.h
+        include/itoa.h
+        include/serialHelper.h
         )
 target_include_directories(arduino_mock
         PRIVATE "include"
@@ -47,17 +70,6 @@ target_link_libraries(arduino_mock
         )
 target_compile_features(arduino_mock PUBLIC cxx_std_11)
 set_target_properties(arduino_mock PROPERTIES CXX_EXTENSIONS OFF)
-
-set_target_properties(arduino_mock
-        PROPERTIES
-        ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/dist/lib"
-        LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/dist/lib"
-        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/dist/bin"
-        )
-
-add_dependencies(arduino_mock gtest gmock)
-
-option(test "Build all tests." OFF)
 
 if (NOT_SUBPROJECT)
     enable_testing()
