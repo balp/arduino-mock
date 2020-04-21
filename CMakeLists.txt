@@ -7,6 +7,8 @@ project(arduino_mock)
 
 find_package(Threads REQUIRED)
 
+set(CMAKE_VERBOSE_MAKEFILE on)
+
 # If we are a stand alone project not included with add_subdirectory() and
 # googletest, e.g. googlemock is not provided make sure to download it.
 if (NOT_SUBPROJECT)
@@ -57,7 +59,7 @@ add_dependencies(arduino_mock gtest gmock)
 
 option(test "Build all tests." OFF)
 
-if (test)
+if (NOT_SUBPROJECT)
     enable_testing()
     add_subdirectory(test)
 endif ()

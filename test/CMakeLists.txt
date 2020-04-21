@@ -1,16 +1,24 @@
-message ("building tests for Arduino Mock")
-# include_directories(${GTEST_INCLUDE_DIRS})
-file(GLOB SRCS *.cc)
+add_executable(arduino_mock_tests
 
-add_executable(test_all test_all.cc)
+        Arduino_unittest.cc
+        EEPROM_unittest.cc
+        SPI_unittest.cc
+        Serial_unittest.cc
+        Spark_unittest.cc
+        WiFi_unittest.cc
+        Wire_unittest.cc
+        serialHelper_unittest.cc
+        )
 
-target_link_libraries(test_all
-    arduino_mock
-    ${GTEST_LIBS_DIR}/libgtest.a
-    ${GTEST_LIBS_DIR}/libgtest_main.a
-    ${GMOCK_LIBS_DIR}/libgmock.a
-    ${CMAKE_THREAD_LIBS_INIT}
+target_link_libraries(arduino_mock_tests
+        gtest
+        gtest_main
+        arduino_mock
+        )
+
+target_compile_features(arduino_mock_tests PUBLIC cxx_std_11)
+
+add_test(
+        NAME arduino_mock_tests
+        COMMAND arduino_mock_tests
 )
-
-add_dependencies(test_all gtest)
-add_test(arduino_mock_test test_all)
