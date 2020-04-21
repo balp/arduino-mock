@@ -149,4 +149,10 @@ class ArduinoMock {
 ArduinoMock* arduinoMockInstance();
 void releaseArduinoMock();
 
+// WMath prototypes
+long random(long);
+long random(long, long);
+void randomSeed(unsigned long);
+long map(long, long, long, long, long);
+
 #endif // ARDUINO_H

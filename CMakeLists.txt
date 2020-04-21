@@ -33,6 +33,7 @@ add_library(arduino_mock STATIC
         src/SPI.cc
         src/WiFi.cc
         src/Wire.cc
+        src/WMath.cpp
         src/WString.cpp
         src/dtostrf.c
         src/itoa.c

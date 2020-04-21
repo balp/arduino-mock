@@ -69,7 +69,7 @@ from where most contributes forked.
 
 The original License for the library is under a ICS, or OpenBSD licence. With some
 helper files form the Arduino source code with a LGPL v2.1 licence.
-At the moment this is the WString and itoa code.   
+At the moment this is the WString, WMath and itoa code.   
  
 
 
