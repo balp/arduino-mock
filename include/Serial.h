@@ -6,6 +6,7 @@
 
 #include <stdint.h>
 #include <gmock/gmock.h>
+#include "WString.h"
 
 using ::testing::_;
 using ::testing::Invoke;
@@ -66,6 +67,7 @@ class SerialMock {
     MOCK_METHOD1(println, size_t(char));
     MOCK_METHOD2(println, size_t(int, int));
     MOCK_METHOD0(println, size_t(void));
+    MOCK_METHOD1(println, size_t(const StringSumHelper));
 
     MOCK_METHOD1(begin, uint8_t(uint32_t));
     MOCK_METHOD0(available, uint8_t());
@@ -152,6 +154,7 @@ class Serial_ {
     virtual size_t println(unsigned long, int = DEC);
     virtual size_t println(double, int = 2);
     virtual size_t println(void);
+    virtual size_t println(const StringSumHelper&);
 
     virtual size_t write(uint8_t);
     virtual size_t write(const char *str);

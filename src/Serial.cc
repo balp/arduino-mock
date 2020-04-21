@@ -185,6 +185,12 @@ size_t Serial_::println(void) {
   return gSerialMock->println();
 }
 
+size_t Serial_::println(const StringSumHelper& s) {
+  assert (gSerialMock != NULL);
+  return gSerialMock->println(s);
+}
+
+
 size_t Serial_::write(uint8_t val) {
   assert (gSerialMock != NULL);
   return gSerialMock->write(val);
