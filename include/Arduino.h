@@ -6,6 +6,9 @@
 
 #include <stdint.h>
 #include "Serial.h"
+#include "WString.h"
+#include "itoa.h"
+
 
 #ifdef __cplusplus
 extern "C" {
