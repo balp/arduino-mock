@@ -4,7 +4,7 @@
 
 #ifndef ARDUINO_MOCK_INCLUDE_CLIENT_H_
 #define ARDUINO_MOCK_INCLUDE_CLIENT_H_
-
+#include "WString.h"
 #include "Stream.h"
 #include "IPAddress.h"
 #include <gmock/gmock.h>

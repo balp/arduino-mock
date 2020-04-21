@@ -6,6 +6,7 @@
 #define ARDUINO_MOCK_INCLUDE_IPADDRESS_H_
 
 #include <stdint.h>
+#include "Printable.h"
 
 class IPAddress : public Printable {
   private:
