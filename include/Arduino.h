@@ -44,9 +44,19 @@ extern "C" {
 #define NUM_DIGITAL_PINS            20
 #define NUM_ANALOG_INPUTS           6
 #define analogInputToDigitalPin(p)  ((p < 6) ? (p) + 14 : -1)
+#define NOT_AN_INTERRUPT -1
+#define digitalPinToInterrupt(p)  ((p) == 2 ? 0 : ((p) == 3 ? 1 : NOT_AN_INTERRUPT))
 
 #define digitalPinHasPWM(p)         ((p) == 9 || (p) == 10 || (p) == 11)
 
+#define A0
+#define A1
+#define A2
+#define A3
+#define A4
+#define A5
+#define A6
+#define A7
 
 typedef uint8_t boolean;
 typedef uint8_t byte;
@@ -60,17 +70,20 @@ int analogRead(uint8_t);
 void analogReference(uint8_t mode);
 void analogWrite(uint8_t, int);
 
-unsigned long millis(void);
-unsigned long micros(void);
-void delay(unsigned long);
-void delayMicroseconds(unsigned int us);
-unsigned long pulseIn(uint8_t pin, uint8_t state, unsigned long timeout);
+time_t millis(void);
+time_t micros(void);
+void delay(time_t);
+void delayMicroseconds(time_t us);
+time_t pulseIn(uint8_t pin, uint8_t state, time_t timeout);
 
 void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val);
 uint8_t shiftIn(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder);
 
 void attachInterrupt(uint8_t, void (*)(void), int mode);
 void detachInterrupt(uint8_t);
+
+void interrupts(void);
+void noInterrupts(void);
 
 void setup(void);
 void loop(void);
@@ -85,14 +98,50 @@ void loop(void);
 #define F(x) (x)
 
 class ArduinoMock {
+  private:
+    time_t currentMillis;
+
   public:
+    ArduinoMock();
+
+    time_t getMillis() {
+      return currentMillis;
+    };
+
+    void setMillisRaw (time_t milliseconds) {
+      currentMillis = (milliseconds & UINT32_MAX);
+    };
+    void setMillisSecs(time_t seconds) {
+      setMillisRaw(seconds *      1000);
+    };
+    void setMillisMins(time_t minutes) {
+      setMillisRaw(minutes *   60 * 1000);
+    };
+    void setMillisHrs (float         hours)   {
+      setMillisRaw(hours  * 60 * 60 * 1000);
+    };
+
+    void addMillisRaw (time_t milliseconds) {
+      currentMillis += milliseconds;
+      currentMillis &= UINT32_MAX;
+    };
+    void addMillisSecs(time_t seconds) {
+      addMillisRaw(seconds *      1000);
+    };
+    void addMillisMins(time_t minutes) {
+      addMillisRaw(minutes *   60 * 1000);
+    };
+    void addMillisHrs (float         hours)   {
+      addMillisRaw(hours  * 60 * 60 * 1000);
+    };
+
     MOCK_METHOD2(pinMode, void (uint8_t, uint8_t));
     MOCK_METHOD2(analogWrite, void (uint8_t, int));
     MOCK_METHOD2(digitalWrite, void (uint8_t, uint8_t));
     MOCK_METHOD1(digitalRead, int (int));
     MOCK_METHOD1(analogRead, int (int));
     MOCK_METHOD1(delay, void (int));
-    MOCK_METHOD0(millis, unsigned long ());
+    MOCK_METHOD0(millis, time_t ());
 };
 ArduinoMock* arduinoMockInstance();
 void releaseArduinoMock();

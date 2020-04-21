@@ -1,5 +1,5 @@
 
-#include "arduino-mock/SoftwareSerial.h"
+#include "SoftwareSerial.h"
 
 void SoftwareSerialFake::buffer_load(const uint8_t buffer_0[], const uint8_t len) {
     assert (len <= buffer_size);

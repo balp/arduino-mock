@@ -1,4 +1,4 @@
-#include "arduino-mock/Wire.h"
+#include "Wire.h"
 
 static WireMock* p_WireMock = NULL;
 WireMock* WireMockInstance() {
@@ -44,8 +44,8 @@ uint8_t Wire_::write(char* a) {
   return p_WireMock->write(a);
 }
 
-uint8_t Wire_::write(uint8_t a, uint8_t b) {
-  return p_WireMock->write(a, b);
+uint8_t Wire_::write(const uint8_t * data, size_t quantity) {
+  return p_WireMock->write(data, quantity);
 }
 
 uint8_t Wire_::available(void) {

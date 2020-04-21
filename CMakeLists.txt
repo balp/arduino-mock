@@ -37,8 +37,8 @@ add_library(arduino_mock STATIC
         )
 target_include_directories(arduino_mock
         PRIVATE "include"
-        PUBLIC "include/arduino-mock"
-        INTERFACE "include/arduino-mock"
+        PUBLIC "include"
+        INTERFACE "include"
         )
 target_link_libraries(arduino_mock
         gmock

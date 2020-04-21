@@ -118,7 +118,6 @@ class SoftwareSerialMock : public SoftwareSerial {
     MOCK_METHOD0(overflow, bool());
     MOCK_METHOD0(restore_listener, void());
     MOCK_METHOD1(at, uint8_t(const uint8_t index));
-    uint8_t operator [] (const uint8_t index) override { return at(index); }
 
     /**
       \brief Load user specified buffer into the fake RX buffer

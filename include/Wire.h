@@ -21,7 +21,7 @@ class Wire_ {
     uint8_t requestFrom(uint8_t, uint8_t, uint8_t);
     uint8_t write(uint8_t);
     uint8_t write(char*);
-    uint8_t write(const uint8_t*, uint8_t);
+    uint8_t write(const uint8_t * data, size_t quantity); // SAMD 1.8.6
     uint8_t available(void);
     uint8_t read(void);
     void onReceive(uint8_t*);
