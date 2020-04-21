@@ -67,3 +67,6 @@ test/test_all
 #ignore debug symbols
 *.gcda
 *.gcno
+
+.idea/
+cmake-build-*/
