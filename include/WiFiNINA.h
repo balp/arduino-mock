@@ -7,6 +7,21 @@
 #include <stdint.h>
 #include "IPAddress.h"
 
+typedef enum {
+  WL_NO_SHIELD = 255,
+  WL_NO_MODULE = WL_NO_SHIELD,
+  WL_IDLE_STATUS = 0,
+  WL_NO_SSID_AVAIL,
+  WL_SCAN_COMPLETED,
+  WL_CONNECTED,
+  WL_CONNECT_FAILED,
+  WL_CONNECTION_LOST,
+  WL_DISCONNECTED,
+  WL_AP_LISTENING,
+  WL_AP_CONNECTED,
+  WL_AP_FAILED
+} wl_status_t;
+
 class WiFiClass {
  public:
   // static const char *firmwareVersion();
@@ -14,7 +29,7 @@ class WiFiClass {
   int begin(const char *ssid, uint8_t key_idx, const char *key);
   int begin(const char *ssid, const char *passphrase);
 
-  uint8_t status();
+  uint8_t status(); // Actually is is a wl_status_t
   unsigned long getTime();
 
 #if 0 // XXX Implement full WiFININA interface
