@@ -13,6 +13,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+#define ARDUINO
 #define __ARDUINO_MOCK__
 
 #define HIGH 0x1
