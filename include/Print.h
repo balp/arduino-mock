@@ -1,7 +1,7 @@
 
 #ifndef Print_h
 #define Print_h
-
+#include "WString.h"
 #include <inttypes.h>
 #include <stdio.h> // for size_t
 
@@ -37,7 +37,7 @@ class Print {
   //   size_t print(const String &);
   //   size_t print(const char[]);
   //   size_t print(char);
-  //   size_t print(unsigned char, int = DEC);
+  virtual size_t print(unsigned char, int = DEC) = 0;
   //   size_t print(int, int = DEC);
   //   size_t print(unsigned int, int = DEC);
   //   size_t print(long, int = DEC);

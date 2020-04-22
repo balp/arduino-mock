@@ -6,6 +6,7 @@ add_executable(arduino_mock_tests
         Serial_unittest.cc
         Spark_unittest.cc
         WiFi_unittest.cc
+        WiFiNINA_unittest.cc
         Wire_unittest.cc
         serialHelper_unittest.cc
         )

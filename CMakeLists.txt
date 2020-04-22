@@ -25,6 +25,7 @@ endif ()
 add_library(arduino_mock STATIC
         src/Arduino.cc
         src/EEPROM.cc
+        src/IPAddress.cpp
         src/IRremote.cc
         src/OneWire.cc
         src/Serial.cc
@@ -32,6 +33,7 @@ add_library(arduino_mock STATIC
         src/Spark.cc
         src/SPI.cc
         src/WiFi.cc
+        src/WiFiNINA.cc
         src/Wire.cc
         src/WMath.cpp
         src/WString.cpp
@@ -40,6 +42,7 @@ add_library(arduino_mock STATIC
         src/serialHelper.cc
         include/Arduino.h
         include/EEPROM.h
+        include/IPAddress.h
         include/IRremote.h
         include/Print.h
         include/RedBot.h
@@ -55,10 +58,11 @@ add_library(arduino_mock STATIC
         include/SoftwareSerial.h
         include/Stream.h
         include/WiFi.h
+        include/WiFiNINA.h
         include/dtostrf.h
         include/itoa.h
         include/serialHelper.h
-        )
+        src/Print.cc)
 target_include_directories(arduino_mock
         PRIVATE "include"
         PUBLIC "include"

@@ -91,5 +91,7 @@ char* WiFi_::gatewayIP() {
   return p_WiFiMock->gatewayIP();
 }
 
+#ifdef ARDUINO_MOCK_CONFIG_WIFI
 // Preinstantiate Objects
 WiFi_ WiFi;
+#endif // ARDUINO_MOCK_CONFIG_WIFI
