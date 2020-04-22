@@ -5,6 +5,7 @@
 
 #include <gmock/gmock.h>
 #include <stdint.h>
+#include "Client.h"
 #include "IPAddress.h"
 
 typedef enum {
@@ -21,6 +22,14 @@ typedef enum {
   WL_AP_CONNECTED,
   WL_AP_FAILED
 } wl_status_t;
+
+class WiFiClient : public Client {
+
+};
+
+class WiFiSSLClient : public WiFiClient {
+
+};
 
 class WiFiClass {
  public:
