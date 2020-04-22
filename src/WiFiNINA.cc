@@ -26,6 +26,13 @@ int WiFiClass::begin(const char *ssid, const char *passphrase) {
   return p_WiFiNinaMock->begin(ssid, passphrase);
 }
 
+uint8_t WiFiClass::status() {
+  return p_WiFiNinaMock->status();
+}
+unsigned long WiFiClass::getTime() {
+  return p_WiFiNinaMock->getTime();
+}
+
 #ifdef ARDUINO_MOCK_CONFIG_WIFININA
 // Preinstantiate Objects
 WiFiClass WiFi;

@@ -13,6 +13,10 @@ class WiFiClass {
   int begin(const char *ssid);
   int begin(const char *ssid, uint8_t key_idx, const char *key);
   int begin(const char *ssid, const char *passphrase);
+
+  uint8_t status();
+  unsigned long getTime();
+
 #if 0 // XXX Implement full WiFININA interface
   uint8_t beginAP(const char *ssid);
   uint8_t beginAP(const char *ssid, uint8_t channel);
@@ -47,7 +51,6 @@ class WiFiClass {
   uint8_t *BSSID(uint8_t networkItem, uint8_t *bssid);
   uint8_t channel(uint8_t networkItem);
   int32_t RSSI(uint8_t networkItem);
-  uint8_t status();
   uint8_t reasonCode();
   int hostByName(const char *aHostname, IPAddress &aResult);
 
@@ -71,7 +74,8 @@ class WiFiNinaMock {
   MOCK_METHOD1(begin, int(const char *));
   MOCK_METHOD3(begin, int(const char *, uint8_t, const char *));
   MOCK_METHOD2(begin, int(const char *, const char *));
-
+  MOCK_METHOD0(status, uint8_t());
+  MOCK_METHOD0(getTime, unsigned long());
 };
 
 WiFiNinaMock *WiFiNinaMockInstance();
