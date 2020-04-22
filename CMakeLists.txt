@@ -5,6 +5,8 @@ endif ()
 
 project(arduino_mock)
 
+set(ARDUINO_MOCK_WIFI CACHE STRING "Wifi module to use (WiFi of WiFiNINA)" 'WiFiNINA')
+
 find_package(Threads REQUIRED)
 
 set(CMAKE_VERBOSE_MAKEFILE on)
@@ -75,6 +77,12 @@ target_link_libraries(arduino_mock
         )
 target_compile_features(arduino_mock PUBLIC cxx_std_11)
 set_target_properties(arduino_mock PROPERTIES CXX_EXTENSIONS OFF)
+if (ARDUINO_MOCK_WIFI STREQUAL "WiFiNINA")
+    target_compile_definitions(arduino_mock PUBLIC ARDUINO_MOCK_CONFIG_WIFININA)
+elseif (ARDUINO_MOCK_WIFI STREQUAL "WiFi")
+    target_compile_definitions(arduino_mock PUBLIC ARDUINO_MOCK_CONFIG_WIFI)
+endif ()
+
 
 if (NOT_SUBPROJECT)
     enable_testing()
