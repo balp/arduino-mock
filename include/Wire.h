@@ -9,7 +9,7 @@
 #define I2C1 0x00000000
 #define WIRE_INTERFACES_COUNT 1
 
-class Wire_ {
+class TwoWire {
   public:
     void begin();
     void begin(uint8_t);
@@ -39,7 +39,7 @@ class Wire_ {
       return write((uint8_t)n);
     }
 };
-extern Wire_ Wire;
+extern TwoWire Wire;
 
 class WireMock {
   public:

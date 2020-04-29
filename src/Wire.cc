@@ -15,66 +15,66 @@ void releaseWireMock() {
   }
 }
 
-void Wire_::begin() {
+void TwoWire::begin() {
   p_WireMock->begin();
 }
 
-void Wire_::begin(uint8_t a) {
+void TwoWire::begin(uint8_t a) {
   p_WireMock->begin(a);
 }
 
-void Wire_::begin(int a) {
+void TwoWire::begin(int a) {
   p_WireMock->begin(a);
 }
 
-void Wire_::beginTransmission(uint8_t a) {
+void TwoWire::beginTransmission(uint8_t a) {
   p_WireMock->beginTransmission(a);
 }
 
 
-uint8_t Wire_::endTransmission(void) {
+uint8_t TwoWire::endTransmission(void) {
   return p_WireMock->endTransmission();
 }
 
-uint8_t Wire_::write(uint8_t a) {
+uint8_t TwoWire::write(uint8_t a) {
   return p_WireMock->write(a);
 }
 
-uint8_t Wire_::write(char* a) {
+uint8_t TwoWire::write(char* a) {
   return p_WireMock->write(a);
 }
 
-uint8_t Wire_::write(const uint8_t * data, size_t quantity) {
+uint8_t TwoWire::write(const uint8_t * data, size_t quantity) {
   return p_WireMock->write(data, quantity);
 }
 
-uint8_t Wire_::available(void) {
+uint8_t TwoWire::available(void) {
   return p_WireMock->available();
 }
 
-uint8_t Wire_::read(void) {
+uint8_t TwoWire::read(void) {
   return p_WireMock->read();
 }
 
-void Wire_::onReceive(uint8_t* a) {
+void TwoWire::onReceive(uint8_t* a) {
   p_WireMock->onReceive(a);
 }
 
-void Wire_::onRequest(uint8_t* a) {
+void TwoWire::onRequest(uint8_t* a) {
   p_WireMock->onRequest(a);
 }
 
-uint8_t Wire_::endTransmission(uint8_t a) {
+uint8_t TwoWire::endTransmission(uint8_t a) {
   return p_WireMock->endTransmission(a);
 }
 
-uint8_t Wire_::requestFrom(uint8_t a, uint8_t b) {
+uint8_t TwoWire::requestFrom(uint8_t a, uint8_t b) {
   return p_WireMock->requestFrom(a, b);
 }
 
-uint8_t Wire_::requestFrom(uint8_t a, uint8_t b, uint8_t c) {
+uint8_t TwoWire::requestFrom(uint8_t a, uint8_t b, uint8_t c) {
   return p_WireMock->requestFrom(a, b, c);
 }
 
 // Preinstantiate Objects
-Wire_ Wire;
+TwoWire Wire;
