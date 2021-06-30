@@ -6,6 +6,7 @@
 
 #include <stdint.h>
 #include "Serial.h"
+#include "Wire.h"
 
 #ifdef __cplusplus
 extern "C" {
