@@ -70,3 +70,4 @@ test/test_all
 
 .idea/
 cmake-build-*/
+.vscode
