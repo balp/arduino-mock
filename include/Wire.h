@@ -60,7 +60,7 @@ class WireMock {
     MOCK_METHOD1(onRequest, void(uint8_t*));
 };
 
-WireMock* WireMockInstance();
+WireMock* wireMockInstance();
 void releaseWireMock();
 
 #endif
