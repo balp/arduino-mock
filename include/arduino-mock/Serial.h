@@ -81,7 +81,7 @@ class SerialMock {
     //Serial methods
     MOCK_METHOD1(at, uint8_t(const uint8_t index));
     uint8_t operator [] (const uint8_t index) { return at(index); }
-    bool operator!() { return true; }
+    operator bool() { return true; }
 
 
     /**
@@ -165,7 +165,7 @@ class Serial_ {
 
     //WiTraC extensions for Serial_
     virtual uint8_t operator [] (const uint8_t index);
-    virtual bool operator!();
+    virtual operator bool();
 
     /*
     TODO: Not implemented yet.
