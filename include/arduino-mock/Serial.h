@@ -165,6 +165,7 @@ class Serial_ {
 
     //WiTraC extensions for Serial_
     virtual uint8_t operator [] (const uint8_t index);
+    virtual bool operator!();
 
     /*
     TODO: Not implemented yet.
