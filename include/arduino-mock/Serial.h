@@ -81,6 +81,8 @@ class SerialMock {
     //Serial methods
     MOCK_METHOD1(at, uint8_t(const uint8_t index));
     uint8_t operator [] (const uint8_t index) { return at(index); }
+    bool operator!() { return true; }
+
 
     /**
       \brief Load user specified buffer into the fake RX buffer
