@@ -85,9 +85,6 @@ void detachInterrupt(uint8_t);
 void interrupts(void);
 void noInterrupts(void);
 
-void setup(void);
-void loop(void);
-
 #ifdef __cplusplus
 } // extern "C"
 #endif
