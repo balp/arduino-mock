@@ -66,8 +66,8 @@ void delay(time_t a) {
   assert (arduinoMock != NULL);
   arduinoMock->delay(a);
 }
-void delayMicroseconds(unsigned int us) {
-  UNUSED(us);
+void delayMicroseconds(time_t us) {
+    UNUSED(us);
 }
 
 time_t pulseIn(uint8_t pin, uint8_t state, time_t timeout) {

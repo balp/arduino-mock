@@ -8,7 +8,7 @@ TEST(Wire, access) {
   uint8_t value2 = 12;
   char text[] = "Mock test";
   uint8_t* callback_func = NULL;
-  WireMock* mock = WireMockInstance();
+  WireMock* mock = wireMockInstance();
   EXPECT_CALL(*mock, begin());
   EXPECT_CALL(*mock, beginTransmission(value1));
   EXPECT_CALL(*mock, endTransmission(value1));

@@ -7,6 +7,7 @@
 #include <stdint.h>
 
 #include "Serial.h"
+#include "Wire.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -54,6 +55,9 @@ extern "C" {
 #define A6
 #define A7
 
+#define lowByte(w) ((uint8_t) ((w) & 0xff))
+#define highByte(w) ((uint8_t) ((w) >> 8))
+
 typedef uint8_t boolean;
 typedef uint8_t byte;
 
@@ -80,9 +84,6 @@ void detachInterrupt(uint8_t);
 
 void interrupts(void);
 void noInterrupts(void);
-
-void setup(void);
-void loop(void);
 
 #ifdef __cplusplus
 } // extern "C"

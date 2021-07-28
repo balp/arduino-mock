@@ -225,6 +225,11 @@ uint8_t Serial_::operator [] (const uint8_t index) {
   return (*gSerialMock)[index];
 }
 
+Serial_::operator bool() {
+    assert (gSerialMock != NULL);
+    return true;
+}
+
 // Preinstantiate Objects
 Serial_ Serial;
 
