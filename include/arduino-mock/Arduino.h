@@ -13,13 +13,36 @@
 #include <string.h> //for memcmp()
 
 
-#define PROGMEM
  
-#define F(expr) expr
+//All *_near and *_far functions provides the same functionnality as their counterpart.
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define PROGMEM
 #define PGM_P const char *
 #define PGM_VOID_P const void *
 #define PSTR(s) (s)
+
+#define pgm_read_byte(p) (* (const uint8_t*) (p))
+#define pgm_read_word(p) (* (const uint16_t*) (p))
+#define pgm_read_dword(p) (* (const uint32_t*) (p))
+#define pgm_read_float(p) (* (const float*) (p))
+#define pgm_read_ptr(p) (* (const void* const*) (p))
+
+#define pgm_read_byte_near(expr)  pgm_read_byte(expr)
+#define pgm_read_word_near(expr)  pgm_read_word(expr)
+#define pgm_read_dword_near(expr) pgm_read_dword(expr)
+#define pgm_read_float_near(expr) pgm_read_float(expr)
+#define pgm_read_ptr_near(expr)   pgm_read_ptr(expr)
+
+#define pgm_read_byte_far(expr)   pgm_read_byte(expr)
+#define pgm_read_word_far(expr)   pgm_read_word(expr)
+#define pgm_read_dword_far(expr)  pgm_read_dword(expr)
+#define pgm_read_float_far(expr)  pgm_read_float(expr)
+#define pgm_read_ptr_far(expr)    pgm_read_ptr(expr)
  
 #define memccpy_P      memccpy
 #define memcmp_P       memcmp
@@ -41,50 +64,6 @@
 #define strstr_P       strstr
 #define vsnprintf_P    vsnprintf
  
-template <typename T>
-uint8_t pgm_read_byte(const T * pointer)
-{
-  const uint8_t * buffer = reinterpret_cast<const uint8_t *>(pointer);
-  return buffer[0];
-}
- 
-template <typename T>
-uint16_t pgm_read_word(const T * pointer)
-{
-  const uint16_t * buffer = reinterpret_cast<const uint16_t *>(pointer);
-  return buffer[0];
-}
- 
-template <typename T>
-uint32_t pgm_read_dword(const T * pointer)
-{
-  const uint32_t * buffer = reinterpret_cast<const uint32_t *>(pointer);
-  return buffer[0];
-}
- 
-template <typename T>
-float pgm_read_float(const T * pointer)
-{
-  const float * buffer = reinterpret_cast<const float *>(pointer);
-  return buffer[0];
-}
- 
-//All *_near and *_far functions provides the same functionnality as their counterpart.
-#define pgm_read_byte_near(expr)  pgm_read_byte(expr)
-#define pgm_read_word_near(expr)  pgm_read_word(expr)
-#define pgm_read_dword_near(expr) pgm_read_dword(expr)
-#define pgm_read_float_near(expr) pgm_read_float(expr)
-#define pgm_read_ptr_near(expr)   pgm_read_ptr(expr)
-#define pgm_read_byte_far(expr)   pgm_read_byte(expr)
-#define pgm_read_word_far(expr)   pgm_read_word(expr)
-#define pgm_read_dword_far(expr)  pgm_read_dword(expr)
-#define pgm_read_float_far(expr)  pgm_read_float(expr)
-#define pgm_read_ptr_far(expr)    pgm_read_ptr(expr)
-
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #define HIGH 0x1
 #define LOW  0x0
