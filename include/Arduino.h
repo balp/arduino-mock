@@ -12,6 +12,30 @@
 extern "C" {
 #endif
 
+#define PROGMEM
+#define PGM_P const char *
+#define PGM_VOID_P const void *
+#define PSTR(s) (s)
+
+#define pgm_read_byte(p) (* (const uint8_t*) (p))
+#define pgm_read_word(p) (* (const uint16_t*) (p))
+#define pgm_read_dword(p) (* (const uint32_t*) (p))
+#define pgm_read_float(p) (* (const float*) (p))
+#define pgm_read_ptr(p) (* (const void* const*) (p))
+
+#define pgm_read_byte_near(expr)  pgm_read_byte(expr)
+#define pgm_read_word_near(expr)  pgm_read_word(expr)
+#define pgm_read_dword_near(expr) pgm_read_dword(expr)
+#define pgm_read_float_near(expr) pgm_read_float(expr)
+#define pgm_read_ptr_near(expr)   pgm_read_ptr(expr)
+
+#define pgm_read_byte_far(expr)   pgm_read_byte(expr)
+#define pgm_read_word_far(expr)   pgm_read_word(expr)
+#define pgm_read_dword_far(expr)  pgm_read_dword(expr)
+#define pgm_read_float_far(expr)  pgm_read_float(expr)
+#define pgm_read_ptr_far(expr)    pgm_read_ptr(expr)
+
+  
 #define HIGH 0x1
 #define LOW  0x0
 
@@ -48,6 +72,16 @@ extern "C" {
 
 #define digitalPinHasPWM(p)         ((p) == 9 || (p) == 10 || (p) == 11)
 
+#define lowByte(w) ((uint8_t) ((w) & 0xff))
+#define highByte(w) ((uint8_t) ((w) >> 8))
+
+//bit manipulation macros
+#define bitRead(value, bit) (((value) >> (bit)) & 0x01)
+#define bitSet(value, bit) ((value) |= (1UL << (bit)))
+#define bitClear(value, bit) ((value) &= ~(1UL << (bit)))
+#define bitWrite(value, bit, bitvalue) (bitvalue ? bitSet(value, bit) : bitClear(value, bit))
+#define bit(b) (1UL << (b))
+
 
 typedef uint8_t boolean;
 typedef uint8_t byte;
@@ -73,6 +107,8 @@ uint8_t shiftIn(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder);
 void attachInterrupt(uint8_t, void (*)(void), int mode);
 void detachInterrupt(uint8_t);
 
+void yield(void);
+  
 void setup(void);
 void loop(void);
 
