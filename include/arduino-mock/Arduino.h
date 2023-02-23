@@ -8,10 +8,62 @@
 
 #include "Serial.h"
 #include "Wire.h"
+#include <string>
+#include <cstring> //for strlen()
+#include <string.h> //for memcmp()
+
+
+ 
+//All *_near and *_far functions provides the same functionnality as their counterpart.
+
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+#define PROGMEM
+#define PGM_P const char *
+#define PGM_VOID_P const void *
+#define PSTR(s) (s)
+
+#define pgm_read_byte(p) (* (const uint8_t*) (p))
+#define pgm_read_word(p) (* (const uint16_t*) (p))
+#define pgm_read_dword(p) (* (const uint32_t*) (p))
+#define pgm_read_float(p) (* (const float*) (p))
+#define pgm_read_ptr(p) (* (const void* const*) (p))
+
+#define pgm_read_byte_near(expr)  pgm_read_byte(expr)
+#define pgm_read_word_near(expr)  pgm_read_word(expr)
+#define pgm_read_dword_near(expr) pgm_read_dword(expr)
+#define pgm_read_float_near(expr) pgm_read_float(expr)
+#define pgm_read_ptr_near(expr)   pgm_read_ptr(expr)
+
+#define pgm_read_byte_far(expr)   pgm_read_byte(expr)
+#define pgm_read_word_far(expr)   pgm_read_word(expr)
+#define pgm_read_dword_far(expr)  pgm_read_dword(expr)
+#define pgm_read_float_far(expr)  pgm_read_float(expr)
+#define pgm_read_ptr_far(expr)    pgm_read_ptr(expr)
+ 
+#define memccpy_P      memccpy
+#define memcmp_P       memcmp
+#define memcpy_P       memcpy
+#define memmem_P       memmem
+#define printf_P       printf
+#define snprintf_P     snprintf
+#define sprintf_P      sprintf
+#define strcasecmp_P   strcasecmp
+#define strcat_P       strcat
+#define strcmp_P       strcmp
+#define strcpy_P       strcpy
+#define strlen_P       strlen
+#define strncasecmp_P  strncasecmp
+#define strncat_P      strncat
+#define strncmp_P      strncmp
+#define strncpy_P      strncpy
+#define strnlen_P      strnlen
+#define strstr_P       strstr
+#define vsnprintf_P    vsnprintf
+ 
 
 #define HIGH 0x1
 #define LOW  0x0
@@ -58,6 +110,13 @@ extern "C" {
 #define lowByte(w) ((uint8_t) ((w) & 0xff))
 #define highByte(w) ((uint8_t) ((w) >> 8))
 
+//bit manipulation macros
+#define bitRead(value, bit) (((value) >> (bit)) & 0x01)
+#define bitSet(value, bit) ((value) |= (1UL << (bit)))
+#define bitClear(value, bit) ((value) &= ~(1UL << (bit)))
+#define bitWrite(value, bit, bitvalue) (bitvalue ? bitSet(value, bit) : bitClear(value, bit))
+#define bit(b) (1UL << (b))
+
 typedef uint8_t boolean;
 typedef uint8_t byte;
 
@@ -84,6 +143,8 @@ void detachInterrupt(uint8_t);
 
 void interrupts(void);
 void noInterrupts(void);
+
+void yield(void);
 
 #ifdef __cplusplus
 } // extern "C"

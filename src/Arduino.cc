@@ -101,3 +101,5 @@ void detachInterrupt(uint8_t) {}
 void interrupts(void) {}
 
 void noInterrupts(void) {}
+
+void yield(void) { }
